@@ -28,7 +28,7 @@ def get_results():
     "following":doc["following"][0],"followers":doc["followers"][0],"totaltweets":doc["totaltweets"][0],
     "usercreatedts":datetime.datetime.strftime(isoparse(doc["usercreatedts"][0]).astimezone(pytz.timezone('Asia/Singapore')),"%Y-%m-%d %H:%M:%S %z" ),
     "tweetcreatedts":datetime.datetime.strftime(isoparse(doc["tweetcreatedts"][0]).astimezone(pytz.timezone('Asia/Singapore')),"%Y-%m-%d %H:%M:%S %z" ),
-    "retweetcount":doc["retweetcount"][0],"favoritecount":doc["favoritecount"][0],"text":doc["text"][0],'len':len(doc["text"][0].split())} for doc in search_results.raw_response['response']['docs']]
+    "retweetcount":doc["retweetcount"][0],"favoritecount":doc["favoritecount"][0],"text":doc["text"][0]} for doc in search_results.raw_response['response']['docs']]
     suggestions=search_results.raw_response['spellcheck']['suggestions']
     return jsonify(numDocs=numDocs,docs=docs,suggestions=suggestions)
 
