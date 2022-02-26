@@ -22,6 +22,9 @@ def get_results():
     numResults=request.args.get('numResults',type=int)
     sortBy=request.args.get('sortBy',type=str)
     sortOrder=request.args.get('sortOrder',type=str)
+    queryItems=query.split()
+    if len(queryItems)>1 and not 'AND' in queryItems and not 'OR' in queryItems:
+        query="\""+query+"\""
     search_results = solr.search(query,df=field,sort="{} {}".format(sortBy,sortOrder),rows=numResults)
     numDocs=search_results.raw_response['response']['numFound']
     docs=[{"username":doc['username'][0],"acctdesc":doc['acctdesc'][0],"location":doc['location'][0],
