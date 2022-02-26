@@ -1,69 +1,62 @@
-2022-02-26 05:27:42.877 INFO  (main) [   ] o.e.j.u.log Logging initialized @1507ms to org.eclipse.jetty.util.log.Slf4jLog
-2022-02-26 05:27:43.217 INFO  (main) [   ] o.e.j.s.Server jetty-9.4.44.v20210927; built: 2021-09-27T23:02:44.612Z; git: 8da83308eeca865e495e53ef315a249d63ba9332; jvm 17.0.2+8-LTS-86
-2022-02-26 05:27:43.233 INFO  (main) [   ] o.e.j.d.p.ScanningAppProvider Deployment monitor [file:///C:/Users/jorda/OneDrive%20-%20Nanyang%20Technological%20University/CZ4034%20Information%20Retrieval/Final%20Project/CZ4034_Information-Retrieval/backend/solr-8.11.1/server/contexts/] at interval 0
-2022-02-26 05:27:43.995 INFO  (main) [   ] o.e.j.w.StandardDescriptorProcessor NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
-2022-02-26 05:27:44.016 INFO  (main) [   ] o.e.j.s.session DefaultSessionIdManager workerName=node0
-2022-02-26 05:27:44.016 INFO  (main) [   ] o.e.j.s.session No SessionScavenger set, using defaults
-2022-02-26 05:27:44.018 INFO  (main) [   ] o.e.j.s.session node0 Scavenging every 660000ms
-2022-02-26 05:27:44.087 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
-2022-02-26 05:27:44.096 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter  ___      _       Welcome to Apache Solr™ version 8.11.1
-2022-02-26 05:27:44.096 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter / __| ___| |_ _   Starting in standalone mode on port 8983
-2022-02-26 05:27:44.096 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter \__ \/ _ \ | '_|  Install dir: C:\Users\jorda\OneDrive - Nanyang Technological University\CZ4034 Information Retrieval\Final Project\CZ4034_Information-Retrieval\backend\solr-8.11.1
-2022-02-26 05:27:44.096 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter |___/\___/_|_|    Start time: 2022-02-26T05:27:44.096989400Z
-2022-02-26 05:27:44.113 INFO  (main) [   ] o.a.s.c.SolrPaths Using system property solr.solr.home: C:\Users\jorda\OneDrive - Nanyang Technological University\CZ4034 Information Retrieval\Final Project\CZ4034_Information-Retrieval\backend\solr-8.11.1\server\solr
-2022-02-26 05:27:44.113 INFO  (main) [   ] o.a.s.c.SolrXmlConfig Loading container configuration from C:\Users\jorda\OneDrive - Nanyang Technological University\CZ4034 Information Retrieval\Final Project\CZ4034_Information-Retrieval\backend\solr-8.11.1\server\solr\solr.xml
-2022-02-26 05:27:44.229 INFO  (main) [   ] o.a.s.c.SolrXmlConfig MBean server found: com.sun.jmx.mbeanserver.JmxMBeanServer@4f0f2942, but no JMX reporters were configured - adding default JMX reporter.
-2022-02-26 05:27:45.063 INFO  (main) [   ] o.a.s.h.c.HttpShardHandlerFactory Host whitelist initialized: WhitelistHostChecker [whitelistHosts=null, whitelistHostCheckingEnabled=true]
-2022-02-26 05:27:45.365 WARN  (main) [   ] o.e.j.u.s.S.config Trusting all certificates configured for Client@3e15bb06[provider=null,keyStore=null,trustStore=null]
-2022-02-26 05:27:45.365 WARN  (main) [   ] o.e.j.u.s.S.config No Client EndPointIdentificationAlgorithm configured for Client@3e15bb06[provider=null,keyStore=null,trustStore=null]
-2022-02-26 05:27:45.601 WARN  (main) [   ] o.e.j.u.s.S.config Trusting all certificates configured for Client@255eaa6b[provider=null,keyStore=null,trustStore=null]
-2022-02-26 05:27:45.601 WARN  (main) [   ] o.e.j.u.s.S.config No Client EndPointIdentificationAlgorithm configured for Client@255eaa6b[provider=null,keyStore=null,trustStore=null]
-2022-02-26 05:27:45.673 WARN  (main) [   ] o.a.s.c.CoreContainer Not all security plugins configured!  authentication=disabled authorization=disabled.  Solr is only as secure as you make it. Consider configuring authentication/authorization before exposing Solr to users internal or external.  See https://s.apache.org/solrsecurity for more info
-2022-02-26 05:27:45.838 INFO  (main) [   ] o.a.s.c.TransientSolrCoreCacheDefault Allocating transient core cache for max 2147483647 cores with initial capacity of 1024
-2022-02-26 05:27:45.845 INFO  (main) [   ] o.a.s.h.a.MetricsHistoryHandler No .system collection, keeping metrics history in memory.
-2022-02-26 05:27:45.930 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.node' (registry 'solr.node') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@4f0f2942
-2022-02-26 05:27:45.930 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jvm' (registry 'solr.jvm') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@4f0f2942
-2022-02-26 05:27:45.945 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jetty' (registry 'solr.jetty') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@4f0f2942
-2022-02-26 05:27:45.988 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Found 1 core definitions underneath C:\Users\jorda\OneDrive - Nanyang Technological University\CZ4034 Information Retrieval\Final Project\CZ4034_Information-Retrieval\backend\solr-8.11.1\server\solr
-2022-02-26 05:27:45.988 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Cores are: [tweets]
-2022-02-26 05:27:46.022 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.c.SolrConfig Using Lucene MatchVersion: 8.11.1
-2022-02-26 05:27:46.055 WARN  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.c.SolrConfig solrconfig.xml: <jmx> is no longer supported, use solr.xml:/metrics/reporter section instead
-2022-02-26 05:27:46.111 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.s.IndexSchema Schema name=default-config
-2022-02-26 05:27:46.337 WARN  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.D.s.TrieIntField Solr loaded a deprecated plugin/analysis class [solr.TrieIntField]. Please consult documentation how to replace it accordingly.
-2022-02-26 05:27:46.442 WARN  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.s.AbstractSpatialPrefixTreeFieldType FieldType SpatialRecursivePrefixTreeFieldType does not allow omitNorms to be specified in schema, hardcoded behavior is omitNorms=true
-2022-02-26 05:27:46.442 WARN  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.s.AbstractSpatialPrefixTreeFieldType FieldType SpatialRecursivePrefixTreeFieldType does not allow omitTermFreqAndPositions to be specified in schema, hardcoded behavior is omitTermFreqAndPositions=true
-2022-02-26 05:27:46.442 WARN  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.s.AbstractSpatialPrefixTreeFieldType FieldType SpatialRecursivePrefixTreeFieldType does not allow termOffsets to be specified in schema, hardcoded behavior is termOffsets=false
-2022-02-26 05:27:46.442 WARN  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.s.AbstractSpatialPrefixTreeFieldType FieldType SpatialRecursivePrefixTreeFieldType does not allow termPositions to be specified in schema, hardcoded behavior is termPositions=false
-2022-02-26 05:27:46.442 WARN  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.s.AbstractSpatialPrefixTreeFieldType FieldType SpatialRecursivePrefixTreeFieldType does not allow omitPositions to be specified in schema, hardcoded behavior is omitPositions=true
-2022-02-26 05:27:46.442 INFO  (main) [   ] o.e.j.s.h.ContextHandler Started o.e.j.w.WebAppContext@191ae03f{/solr,file:///C:/Users/jorda/OneDrive%20-%20Nanyang%20Technological%20University/CZ4034%20Information%20Retrieval/Final%20Project/CZ4034_Information-Retrieval/backend/solr-8.11.1/server/solr-webapp/webapp/,AVAILABLE}{C:\Users\jorda\OneDrive - Nanyang Technological University\CZ4034 Information Retrieval\Final Project\CZ4034_Information-Retrieval\backend\solr-8.11.1\server/solr-webapp/webapp}
-2022-02-26 05:27:46.472 INFO  (main) [   ] o.e.j.s.AbstractConnector Started ServerConnector@3dd1dc90{HTTP/1.1, (http/1.1, h2c)}{0.0.0.0:8983}
-2022-02-26 05:27:46.472 INFO  (main) [   ] o.e.j.s.Server Started @5105ms
-2022-02-26 05:27:46.640 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.s.IndexSchema Loaded schema default-config/1.6 with uniqueid field id
-2022-02-26 05:27:46.704 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.c.CoreContainer Creating SolrCore 'tweets' using configuration from instancedir C:\Users\jorda\OneDrive - Nanyang Technological University\CZ4034 Information Retrieval\Final Project\CZ4034_Information-Retrieval\backend\solr-8.11.1\server\solr\tweets, trusted=true
-2022-02-26 05:27:46.730 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.core.tweets' (registry 'solr.core.tweets') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@4f0f2942
-2022-02-26 05:27:46.746 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.c.SolrCore [[tweets] ] Opening new SolrCore at [C:\Users\jorda\OneDrive - Nanyang Technological University\CZ4034 Information Retrieval\Final Project\CZ4034_Information-Retrieval\backend\solr-8.11.1\server\solr\tweets], dataDir=[C:\Users\jorda\OneDrive - Nanyang Technological University\CZ4034 Information Retrieval\Final Project\CZ4034_Information-Retrieval\backend\solr-8.11.1\server\solr\tweets\data\]
-2022-02-26 05:27:46.939 WARN  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.c.PluginBag Multiple entries of searchComponent with name spellcheck
-2022-02-26 05:27:47.455 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.u.UpdateHandler Using UpdateLog implementation: org.apache.solr.update.UpdateLog
-2022-02-26 05:27:47.455 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.u.UpdateLog Initializing UpdateLog: dataDir= defaultSyncLevel=FLUSH numRecordsToKeep=100 maxNumLogsToKeep=10 numVersionBuckets=65536
-2022-02-26 05:27:47.479 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.u.CommitTracker Hard AutoCommit: if uncommitted for 15000ms; 
-2022-02-26 05:27:47.479 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.u.CommitTracker Soft AutoCommit: disabled
-2022-02-26 05:27:47.696 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.r.ManagedResourceStorage File-based storage initialized to use dir: C:\Users\jorda\OneDrive - Nanyang Technological University\CZ4034 Information Retrieval\Final Project\CZ4034_Information-Retrieval\backend\solr-8.11.1\server\solr\tweets\conf
-2022-02-26 05:27:47.713 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.h.c.SpellCheckComponent Initializing spell checkers
-2022-02-26 05:27:47.713 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.s.DirectSolrSpellChecker init: {name=default,field=text,classname=solr.DirectSolrSpellChecker,distanceMeasure=internal,accuracy=0.4,maxQueryFrequency=0.01,maxEdits=2,minPrefix=1,maxInspections=5,minQueryLength=4}
-2022-02-26 05:27:47.713 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.h.c.SpellCheckComponent Initializing spell checkers
-2022-02-26 05:27:47.713 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.s.DirectSolrSpellChecker init: {name=default,field=username,classname=solr.DirectSolrSpellChecker,distanceMeasure=internal,accuracy=0.4,maxQueryFrequency=0.01,maxEdits=2,minPrefix=1,maxInspections=5,minQueryLength=4}
-2022-02-26 05:27:47.732 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.h.ReplicationHandler Commits will be reserved for 10000 ms
-2022-02-26 05:27:47.747 INFO  (searcherExecutor-15-thread-1-processing-x:tweets) [   x:tweets] o.a.s.c.QuerySenderListener QuerySenderListener done.
-2022-02-26 05:27:47.747 INFO  (searcherExecutor-15-thread-1-processing-x:tweets) [   x:tweets] o.a.s.h.c.SpellCheckComponent Loading spell index for spellchecker: default
-2022-02-26 05:27:47.747 INFO  (searcherExecutor-15-thread-1-processing-x:tweets) [   x:tweets] o.a.s.h.c.SpellCheckComponent Loading spell index for spellchecker: default
-2022-02-26 05:27:47.762 INFO  (searcherExecutor-15-thread-1-processing-x:tweets) [   x:tweets] o.a.s.c.SolrCore [tweets]  Registered new searcher autowarm time: 0 ms
-2022-02-26 05:27:48.486 INFO  (qtp519979933-29) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json} status=0 QTime=49
-2022-02-26 05:28:13.389 INFO  (qtp519979933-22) [   x:tweets] o.a.s.c.S.Request [tweets]  webapp=/solr path=/select params={q=vaccine&df=text&sort=retweetcount+desc&rows=1000&wt=json} hits=18555 status=0 QTime=224
-2022-02-26 05:31:26.269 INFO  (qtp519979933-20) [   x:tweets] o.a.s.c.S.Request [tweets]  webapp=/solr path=/select params={q="booster+vaccine"&df=text&sort=retweetcount+desc&rows=1000&wt=json} hits=176 status=0 QTime=48
-2022-02-26 05:31:48.715 INFO  (qtp519979933-26) [   x:tweets] o.a.s.c.S.Request [tweets]  webapp=/solr path=/select params={q="vaccine+booster"&df=text&sort=retweetcount+desc&rows=1000&wt=json} hits=155 status=0 QTime=5
-2022-02-26 05:32:10.680 INFO  (qtp519979933-22) [   x:tweets] o.a.s.c.S.Request [tweets]  webapp=/solr path=/select params={q="moderna+vaccination"&df=text&sort=retweetcount+desc&rows=1000&wt=json} hits=3 status=0 QTime=37
-2022-02-26 05:32:29.812 INFO  (qtp519979933-26) [   x:tweets] o.a.s.c.S.Request [tweets]  webapp=/solr path=/select params={q="pfizer+vaccine"&df=text&sort=retweetcount+desc&rows=1000&wt=json} hits=102 status=0 QTime=4
-2022-02-26 05:33:02.924 INFO  (qtp519979933-22) [   x:tweets] o.a.s.c.S.Request [tweets]  webapp=/solr path=/select params={q=vaccine+OR+booster&df=text&sort=retweetcount+desc&rows=1000&wt=json} hits=22129 status=0 QTime=14
-2022-02-26 05:34:25.067 INFO  (qtp519979933-23) [   x:tweets] o.a.s.c.S.Request [tweets]  webapp=/solr path=/select params={q=vaccinee+AND+booster&df=text&sort=retweetcount+desc&rows=1000&wt=json} hits=0 status=0 QTime=26
-2022-02-26 05:34:30.312 INFO  (qtp519979933-26) [   x:tweets] o.a.s.c.S.Request [tweets]  webapp=/solr path=/select params={q=vaccine+AND+booster&df=text&sort=retweetcount+desc&rows=1000&wt=json} hits=880 status=0 QTime=8
-2022-02-26 05:37:16.733 INFO  (qtp519979933-28) [   x:tweets] o.a.s.c.S.Request [tweets]  webapp=/solr path=/select params={q=vaccine&df=text&sort=retweetcount+desc&rows=1000&wt=json} hits=18555 status=0 QTime=10
+2022-02-26 05:53:37.487 INFO  (main) [   ] o.e.j.u.log Logging initialized @1117ms to org.eclipse.jetty.util.log.Slf4jLog
+2022-02-26 05:53:37.671 INFO  (main) [   ] o.e.j.s.Server jetty-9.4.44.v20210927; built: 2021-09-27T23:02:44.612Z; git: 8da83308eeca865e495e53ef315a249d63ba9332; jvm 17.0.2+8-LTS-86
+2022-02-26 05:53:37.679 INFO  (main) [   ] o.e.j.d.p.ScanningAppProvider Deployment monitor [file:///C:/Users/jorda/OneDrive%20-%20Nanyang%20Technological%20University/CZ4034%20Information%20Retrieval/Final%20Project/CZ4034_Information-Retrieval/backend/solr-8.11.1/server/contexts/] at interval 0
+2022-02-26 05:53:38.155 INFO  (main) [   ] o.e.j.w.StandardDescriptorProcessor NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
+2022-02-26 05:53:38.163 INFO  (main) [   ] o.e.j.s.session DefaultSessionIdManager workerName=node0
+2022-02-26 05:53:38.163 INFO  (main) [   ] o.e.j.s.session No SessionScavenger set, using defaults
+2022-02-26 05:53:38.171 INFO  (main) [   ] o.e.j.s.session node0 Scavenging every 600000ms
+2022-02-26 05:53:38.218 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
+2022-02-26 05:53:38.220 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter  ___      _       Welcome to Apache Solr™ version 8.11.1
+2022-02-26 05:53:38.220 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter / __| ___| |_ _   Starting in standalone mode on port 8983
+2022-02-26 05:53:38.220 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter \__ \/ _ \ | '_|  Install dir: C:\Users\jorda\OneDrive - Nanyang Technological University\CZ4034 Information Retrieval\Final Project\CZ4034_Information-Retrieval\backend\solr-8.11.1
+2022-02-26 05:53:38.220 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter |___/\___/_|_|    Start time: 2022-02-26T05:53:38.220745400Z
+2022-02-26 05:53:38.228 INFO  (main) [   ] o.a.s.c.SolrPaths Using system property solr.solr.home: C:\Users\jorda\OneDrive - Nanyang Technological University\CZ4034 Information Retrieval\Final Project\CZ4034_Information-Retrieval\backend\solr-8.11.1\server\solr
+2022-02-26 05:53:38.228 INFO  (main) [   ] o.a.s.c.SolrXmlConfig Loading container configuration from C:\Users\jorda\OneDrive - Nanyang Technological University\CZ4034 Information Retrieval\Final Project\CZ4034_Information-Retrieval\backend\solr-8.11.1\server\solr\solr.xml
+2022-02-26 05:53:38.287 INFO  (main) [   ] o.a.s.c.SolrXmlConfig MBean server found: com.sun.jmx.mbeanserver.JmxMBeanServer@4f0f2942, but no JMX reporters were configured - adding default JMX reporter.
+2022-02-26 05:53:38.704 INFO  (main) [   ] o.a.s.h.c.HttpShardHandlerFactory Host whitelist initialized: WhitelistHostChecker [whitelistHosts=null, whitelistHostCheckingEnabled=true]
+2022-02-26 05:53:38.884 WARN  (main) [   ] o.e.j.u.s.S.config Trusting all certificates configured for Client@4e1ce44[provider=null,keyStore=null,trustStore=null]
+2022-02-26 05:53:38.884 WARN  (main) [   ] o.e.j.u.s.S.config No Client EndPointIdentificationAlgorithm configured for Client@4e1ce44[provider=null,keyStore=null,trustStore=null]
+2022-02-26 05:53:39.018 WARN  (main) [   ] o.e.j.u.s.S.config Trusting all certificates configured for Client@7a0e7ecd[provider=null,keyStore=null,trustStore=null]
+2022-02-26 05:53:39.018 WARN  (main) [   ] o.e.j.u.s.S.config No Client EndPointIdentificationAlgorithm configured for Client@7a0e7ecd[provider=null,keyStore=null,trustStore=null]
+2022-02-26 05:53:39.062 WARN  (main) [   ] o.a.s.c.CoreContainer Not all security plugins configured!  authentication=disabled authorization=disabled.  Solr is only as secure as you make it. Consider configuring authentication/authorization before exposing Solr to users internal or external.  See https://s.apache.org/solrsecurity for more info
+2022-02-26 05:53:39.169 INFO  (main) [   ] o.a.s.c.TransientSolrCoreCacheDefault Allocating transient core cache for max 2147483647 cores with initial capacity of 1024
+2022-02-26 05:53:39.181 INFO  (main) [   ] o.a.s.h.a.MetricsHistoryHandler No .system collection, keeping metrics history in memory.
+2022-02-26 05:53:39.247 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.node' (registry 'solr.node') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@4f0f2942
+2022-02-26 05:53:39.250 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jvm' (registry 'solr.jvm') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@4f0f2942
+2022-02-26 05:53:39.251 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jetty' (registry 'solr.jetty') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@4f0f2942
+2022-02-26 05:53:39.284 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Found 1 core definitions underneath C:\Users\jorda\OneDrive - Nanyang Technological University\CZ4034 Information Retrieval\Final Project\CZ4034_Information-Retrieval\backend\solr-8.11.1\server\solr
+2022-02-26 05:53:39.284 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Cores are: [tweets]
+2022-02-26 05:53:39.318 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.c.SolrConfig Using Lucene MatchVersion: 8.11.1
+2022-02-26 05:53:39.344 WARN  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.c.SolrConfig solrconfig.xml: <jmx> is no longer supported, use solr.xml:/metrics/reporter section instead
+2022-02-26 05:53:39.387 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.s.IndexSchema Schema name=default-config
+2022-02-26 05:53:39.568 WARN  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.D.s.TrieIntField Solr loaded a deprecated plugin/analysis class [solr.TrieIntField]. Please consult documentation how to replace it accordingly.
+2022-02-26 05:53:39.647 WARN  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.s.AbstractSpatialPrefixTreeFieldType FieldType SpatialRecursivePrefixTreeFieldType does not allow omitNorms to be specified in schema, hardcoded behavior is omitNorms=true
+2022-02-26 05:53:39.647 WARN  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.s.AbstractSpatialPrefixTreeFieldType FieldType SpatialRecursivePrefixTreeFieldType does not allow omitTermFreqAndPositions to be specified in schema, hardcoded behavior is omitTermFreqAndPositions=true
+2022-02-26 05:53:39.647 WARN  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.s.AbstractSpatialPrefixTreeFieldType FieldType SpatialRecursivePrefixTreeFieldType does not allow termOffsets to be specified in schema, hardcoded behavior is termOffsets=false
+2022-02-26 05:53:39.647 WARN  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.s.AbstractSpatialPrefixTreeFieldType FieldType SpatialRecursivePrefixTreeFieldType does not allow termPositions to be specified in schema, hardcoded behavior is termPositions=false
+2022-02-26 05:53:39.647 WARN  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.s.AbstractSpatialPrefixTreeFieldType FieldType SpatialRecursivePrefixTreeFieldType does not allow omitPositions to be specified in schema, hardcoded behavior is omitPositions=true
+2022-02-26 05:53:39.648 INFO  (main) [   ] o.e.j.s.h.ContextHandler Started o.e.j.w.WebAppContext@53ab0286{/solr,file:///C:/Users/jorda/OneDrive%20-%20Nanyang%20Technological%20University/CZ4034%20Information%20Retrieval/Final%20Project/CZ4034_Information-Retrieval/backend/solr-8.11.1/server/solr-webapp/webapp/,AVAILABLE}{C:\Users\jorda\OneDrive - Nanyang Technological University\CZ4034 Information Retrieval\Final Project\CZ4034_Information-Retrieval\backend\solr-8.11.1\server/solr-webapp/webapp}
+2022-02-26 05:53:39.666 INFO  (main) [   ] o.e.j.s.AbstractConnector Started ServerConnector@478ee483{HTTP/1.1, (http/1.1, h2c)}{0.0.0.0:8983}
+2022-02-26 05:53:39.666 INFO  (main) [   ] o.e.j.s.Server Started @3299ms
+2022-02-26 05:53:39.800 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.s.IndexSchema Loaded schema default-config/1.6 with uniqueid field id
+2022-02-26 05:53:39.837 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.c.CoreContainer Creating SolrCore 'tweets' using configuration from instancedir C:\Users\jorda\OneDrive - Nanyang Technological University\CZ4034 Information Retrieval\Final Project\CZ4034_Information-Retrieval\backend\solr-8.11.1\server\solr\tweets, trusted=true
+2022-02-26 05:53:39.863 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.core.tweets' (registry 'solr.core.tweets') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@4f0f2942
+2022-02-26 05:53:39.878 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.c.SolrCore [[tweets] ] Opening new SolrCore at [C:\Users\jorda\OneDrive - Nanyang Technological University\CZ4034 Information Retrieval\Final Project\CZ4034_Information-Retrieval\backend\solr-8.11.1\server\solr\tweets], dataDir=[C:\Users\jorda\OneDrive - Nanyang Technological University\CZ4034 Information Retrieval\Final Project\CZ4034_Information-Retrieval\backend\solr-8.11.1\server\solr\tweets\data\]
+2022-02-26 05:53:40.010 WARN  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.c.PluginBag Multiple entries of searchComponent with name spellcheck
+2022-02-26 05:53:40.394 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.u.UpdateHandler Using UpdateLog implementation: org.apache.solr.update.UpdateLog
+2022-02-26 05:53:40.394 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.u.UpdateLog Initializing UpdateLog: dataDir= defaultSyncLevel=FLUSH numRecordsToKeep=100 maxNumLogsToKeep=10 numVersionBuckets=65536
+2022-02-26 05:53:40.403 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.u.CommitTracker Hard AutoCommit: if uncommitted for 15000ms; 
+2022-02-26 05:53:40.403 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.u.CommitTracker Soft AutoCommit: disabled
+2022-02-26 05:53:40.568 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.r.ManagedResourceStorage File-based storage initialized to use dir: C:\Users\jorda\OneDrive - Nanyang Technological University\CZ4034 Information Retrieval\Final Project\CZ4034_Information-Retrieval\backend\solr-8.11.1\server\solr\tweets\conf
+2022-02-26 05:53:40.577 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.h.c.SpellCheckComponent Initializing spell checkers
+2022-02-26 05:53:40.587 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.s.DirectSolrSpellChecker init: {name=default,field=text,classname=solr.DirectSolrSpellChecker,distanceMeasure=internal,accuracy=0.4,maxQueryFrequency=0.01,maxEdits=2,minPrefix=1,maxInspections=5,minQueryLength=4}
+2022-02-26 05:53:40.587 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.h.c.SpellCheckComponent Initializing spell checkers
+2022-02-26 05:53:40.587 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.s.DirectSolrSpellChecker init: {name=default,field=username,classname=solr.DirectSolrSpellChecker,distanceMeasure=internal,accuracy=0.4,maxQueryFrequency=0.01,maxEdits=2,minPrefix=1,maxInspections=5,minQueryLength=4}
+2022-02-26 05:53:40.600 INFO  (coreLoadExecutor-13-thread-1) [   x:tweets] o.a.s.h.ReplicationHandler Commits will be reserved for 10000 ms
+2022-02-26 05:53:40.618 INFO  (searcherExecutor-15-thread-1-processing-x:tweets) [   x:tweets] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2022-02-26 05:53:40.618 INFO  (searcherExecutor-15-thread-1-processing-x:tweets) [   x:tweets] o.a.s.h.c.SpellCheckComponent Loading spell index for spellchecker: default
+2022-02-26 05:53:40.618 INFO  (searcherExecutor-15-thread-1-processing-x:tweets) [   x:tweets] o.a.s.h.c.SpellCheckComponent Loading spell index for spellchecker: default
+2022-02-26 05:53:40.621 INFO  (searcherExecutor-15-thread-1-processing-x:tweets) [   x:tweets] o.a.s.c.SolrCore [tweets]  Registered new searcher autowarm time: 0 ms
+2022-02-26 05:53:42.613 INFO  (qtp2101636817-22) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json} status=0 QTime=63
+2022-02-26 05:53:42.904 INFO  (qtp2101636817-21) [   x:tweets] o.a.s.c.S.Request [tweets]  webapp=/solr path=/select params={q="vaccine+injury"&df=text&sort=favoritecount+desc&rows=1000&wt=json} hits=47 status=0 QTime=124
+2022-02-26 05:54:05.327 INFO  (qtp2101636817-26) [   x:tweets] o.a.s.c.S.Request [tweets]  webapp=/solr path=/select params={q=vaccine&df=text&sort=favoritecount+desc&rows=1000&wt=json} hits=18555 status=0 QTime=23
