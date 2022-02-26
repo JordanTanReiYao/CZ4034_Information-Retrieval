@@ -50,7 +50,7 @@
     </analyzer>
   </fieldType>
   <fieldType name="pdate" class="solr.DatePointField" docValues="true"/>
-  <fieldType name="pdates" class="solr.DatePointField" docValues="true" multiValued="true"/>
+  <fieldType name="pdates" class="solr.DatePointField" docValues="true" multiValued="false"/>
   <fieldType name="pdouble" class="solr.DoublePointField" docValues="true"/>
   <fieldType name="pdoubles" class="solr.DoublePointField" docValues="true" multiValued="true"/>
   <fieldType name="pfloat" class="solr.FloatPointField" docValues="true"/>
@@ -64,7 +64,7 @@
   <fieldType name="pint" class="solr.IntPointField" docValues="true"/>
   <fieldType name="pints" class="solr.IntPointField" docValues="true" multiValued="true"/>
   <fieldType name="plong" class="solr.LongPointField" docValues="true"/>
-  <fieldType name="plongs" class="solr.LongPointField" docValues="true" multiValued="true"/>
+  <fieldType name="plongs" class="solr.LongPointField" docValues="true" multiValued="false"/>
   <fieldType name="point" class="solr.PointType" subFieldSuffix="_d" dimension="2"/>
   <fieldType name="random" class="solr.RandomSortField" indexed="true"/>
   <fieldType name="rank" class="solr.RankField"/>
@@ -274,7 +274,7 @@
       <filter class="solr.LowerCaseFilterFactory"/>
     </analyzer>
   </fieldType>
-  <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100" multiValued="true">
+  <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100" multiValued="false">
     <analyzer type="index">
       <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[^A-Za-z0-9]+" replacement=" "/>
       <tokenizer class="solr.StandardTokenizerFactory"/>
@@ -468,7 +468,7 @@
   <field name="id" type="string" multiValued="false" indexed="true" required="true" stored="true"/>
   <field name="location" type="text_general"/>
   <field name="retweetcount" type="plongs"/>
-  <field name="spellcheck" type="text_general" multiValued="true" indexed="true" stored="true"/>
+  <!--<field name="spellcheck" type="text_general" multiValued="true" indexed="true" stored="true"/>-->
   <field name="text" type="text_general"/>
   <field name="totaltweets" type="plongs"/>
   <field name="tweetcreatedts" type="pdates"/>
@@ -543,8 +543,8 @@
   <dynamicField name="*_f" type="pfloat" indexed="true" stored="true"/>
   <dynamicField name="*_d" type="pdouble" indexed="true" stored="true"/>
   <dynamicField name="*_p" type="location" indexed="true" stored="true"/>
-  <copyField source="text" dest="spellcheck"/>
+  <!--<copyField source="text" dest="spellcheck"/>
   <copyField source="text" dest="spellcheck" maxChars="256"/>
   <copyField source="username" dest="spellcheck"/>
-  <copyField source="username" dest="spellcheck" maxChars="256"/>
+  <copyField source="username" dest="spellcheck" maxChars="256"/>-->
 </schema>

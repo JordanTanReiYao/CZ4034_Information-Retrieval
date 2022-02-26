@@ -842,18 +842,18 @@
       <!-- the spellcheck distance measure used, the default is the internal levenshtein -->
       <str name="distanceMeasure">internal</str>
       <!-- minimum accuracy needed to be considered a valid spellcheck suggestion -->
-      <float name="accuracy">0.4</float>
+      <float name="accuracy">0.2</float>
       <!-- the maximum #edits we consider when enumerating terms: can be 1 or 2 -->
       <int name="maxEdits">2</int>
       <!-- the minimum shared prefix when enumerating terms -->
-      <int name="minPrefix">1</int>
+      <int name="minPrefix">0</int>
       <!-- maximum number of inspections per result. -->
       <int name="maxInspections">5</int>
       <!-- minimum length of a query term to be considered for correction -->
-      <int name="minQueryLength">4</int>
+      <int name="minQueryLength">1</int>
       <!-- maximum threshold of documents a query term can appear to be considered for correction -->
-      <float name="maxQueryFrequency">0.01</float>
-      
+      <float name="maxQueryFrequency">0.99</float>
+      <float name="thresholdTokenFrequency">0</float>
       <!-- uncomment this to require suggestions to occur in 1% of the documents
         <float name="thresholdTokenFrequency">.01</float>
       -->
@@ -877,75 +877,13 @@
       <str name="spellcheck.dictionary">default</str>
       <int name="rows">30000</int>
       <str name="spellcheck">on</str>
-      
-      
-      
-      <str name="spellcheck.maxCollationTries">10</str>
-      <str name="spellcheck.maxCollations">5</str>
-     
-    </lst>
-    <!-- add spell check processing after 
-      the default search component. This is 
-      the search component name. -->
-    <arr name="last-components">
-      <str>spellcheck</str>
-    </arr>
-  </requestHandler>
-
-
-  <searchComponent name="spellcheck" class="solr.SpellCheckComponent">
-
-    <!--<str name="queryAnalyzerFieldType">text_general</str>-->
-
-    <!-- Multiple "Spell Checkers" can be declared and used by this
-         component
-      -->
-
-    <!-- a spellchecker built from a field of the main index -->
-    <lst name="spellchecker">
-      <str name="name">default</str>
-      <str name="field">username</str>
-      <str name="classname">solr.DirectSolrSpellChecker</str>
-      <!-- the spellcheck distance measure used, the default is the internal levenshtein -->
-      <str name="distanceMeasure">internal</str>
-      <!-- minimum accuracy needed to be considered a valid spellcheck suggestion -->
-      <float name="accuracy">0.4</float>
-      <!-- the maximum #edits we consider when enumerating terms: can be 1 or 2 -->
-      <int name="maxEdits">2</int>
-      <!-- the minimum shared prefix when enumerating terms -->
-      <int name="minPrefix">1</int>
-      <!-- maximum number of inspections per result. -->
-      <int name="maxInspections">5</int>
-      <!-- minimum length of a query term to be considered for correction -->
-      <int name="minQueryLength">4</int>
-      <!-- maximum threshold of documents a query term can appear to be considered for correction -->
-      <float name="maxQueryFrequency">0.01</float>
-      
-      <!-- uncomment this to require suggestions to occur in 1% of the documents
-        <float name="thresholdTokenFrequency">.01</float>
-      -->
-    </lst>
-
-    <!-- a spellchecker that can break or combine words.  See "/spell" handler below for usage -->
-    <!--
-    <lst name="spellchecker">
-      <str name="name">wordbreak</str>
-      <str name="classname">solr.WordBreakSolrSpellChecker</str>
-      <str name="field">name</str>
-      <str name="combineWords">true</str>
-      <str name="breakWords">true</str>
-      <int name="maxChanges">10</int>
-    </lst>
-    -->
-  </searchComponent>
-  <requestHandler name="/select" class="solr.SearchHandler">
-    <lst name="defaults">
-      <str name="echoParams">explicit</str>
-      <str name="spellcheck.dictionary">default</str>
-      <int name="rows">2000</int>
-      <str name="spellcheck">on</str>
+      <!--<str name="spellcheck.extendedResults">true</str>-->
+      <!--<str name="spellcheck.count">5</str>-->
       <str name="spellcheck.alternativeTermCount">5</str>
       <str name="spellcheck.maxResultsForSuggest">5</str>
+      <str name="spellcheck.collate">false</str>
+      <str name="spellcheck.onlyMorePopular">true</str>
+      <str name='spellcheck.accuracy'>0.8</str>
       <str name="spellcheck.collateExtendedResults">true</str>
       <str name="spellcheck.maxCollationTries">10</str>
       <str name="spellcheck.maxCollations">5</str>
@@ -959,15 +897,37 @@
     </arr>
   </requestHandler>
 
+  <searchComponent name="suggest" class="solr.SpellCheckComponent">
+<str name="queryAnalyzerFieldType">string</str>
+<lst name="spellchecker">  
+<str name="name">suggest</str>  
+<str name="classname">org.apache.solr.spelling.suggest.Suggester</str> 
+<str name="lookupImpl">org.apache.solr.spelling.suggest.tst.TSTLookup</str>  
+<str name="field">text</str>
+<float name="threshold">0.01</float>
+        <str name="comparatorClass">freq</str>
+        <str name="buildOnOptimize">true</str>
+<str name="buildOnCommit">true</str>     
+</lst>  
+</searchComponent>
+
+<requestHandler name="/suggest" class="org.apache.solr.handler.component.SearchHandler">
+     <lst name="defaults">
+        <str name="spellcheck">true</str>
+        <str name="spellcheck.dictionary">suggest</str>
+        <str name="spellcheck.count">8</str>    
+        <str name="spellcheck.onlyMorePopular">true</str>  
+        <str name="spellcheck.collate">true</str> 
+      </lst>
+     <arr name="components">
+         <str>suggest</str> 
+     </arr>    
+  </requestHandler>
+
+   
   <searchComponent name="tvComponent" class="solr.TermVectorComponent"/>
 
-  <!-- A request handler for demonstrating the term vector component
-
-       This is purely as an example.
-
-       In reality you will likely want to add the component to your
-       already specified request handlers.
-    -->
+ 
   <requestHandler name="/tvrh" class="solr.SearchHandler" startup="lazy">
     <lst name="defaults">
       <bool name="tv">true</bool>

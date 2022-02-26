@@ -17,23 +17,35 @@ solr = pysolr.Solr("http://localhost:8983/solr/tweets", always_commit=True)
 
 @app.route('/get_results',methods=['GET'])
 def get_results():
+    params={}
     query=request.args.get('query',type=str)
-    field=request.args.get('field',type=str)
-    numResults=request.args.get('numResults',type=int)
+    params['df']=request.args.get('field',type=str)
+    numResults=request.args.get('numResults',type=str)
+    if numResults!='all':
+        params['rows']=int(numResults)
+
     sortBy=request.args.get('sortBy',type=str)
     sortOrder=request.args.get('sortOrder',type=str)
+
+    if sortBy!='relevance':
+        params['sort']="{} {}".format(sortBy,sortOrder)
+
     queryItems=query.split()
     if len(queryItems)>1 and not 'AND' in queryItems and not 'OR' in queryItems:
         query="\""+query+"\""
-    search_results = solr.search(query,df=field,sort="{} {}".format(sortBy,sortOrder),rows=numResults)
+
+    start=time.time()
+    search_results = solr.search(query,**params)
+    queryTime=time.time()-start
+    
     numDocs=search_results.raw_response['response']['numFound']
-    docs=[{"username":doc['username'][0],"acctdesc":doc['acctdesc'][0],"location":doc['location'][0],
-    "following":doc["following"][0],"followers":doc["followers"][0],"totaltweets":doc["totaltweets"][0],
-    "usercreatedts":datetime.datetime.strftime(isoparse(doc["usercreatedts"][0]).astimezone(pytz.timezone('Asia/Singapore')),"%Y-%m-%d %H:%M:%S %z" ),
-    "tweetcreatedts":datetime.datetime.strftime(isoparse(doc["tweetcreatedts"][0]).astimezone(pytz.timezone('Asia/Singapore')),"%Y-%m-%d %H:%M:%S %z" ),
-    "retweetcount":doc["retweetcount"][0],"favoritecount":doc["favoritecount"][0],"text":doc["text"][0]} for doc in search_results.raw_response['response']['docs']]
-    suggestions=search_results.raw_response['spellcheck']['suggestions']
-    return jsonify(numDocs=numDocs,docs=docs,suggestions=suggestions)
+    
+    docs= search_results.raw_response['response']['docs']
+    for doc in docs:
+        doc.update((k, datetime.datetime.strftime(isoparse(v).astimezone(pytz.timezone('Asia/Singapore')),"%Y-%m-%d %H:%M:%S %z" )) for k, v in doc.items() if k == "usercreatedts" or k=='tweetcreatedts')
+
+    suggestions=search_results.raw_response['spellcheck']['suggestions'] if 'spellcheck' in search_results.raw_response else None
+    return jsonify(queryTime=queryTime,numDocs=numDocs,docs=docs,suggestions=suggestions)
 
     
 if __name__ == "__main__":
