@@ -2,6 +2,6 @@
 pandas
 pysolr
 flask
-flask_cors
+flask-cors
 pytz
 python-dateutil

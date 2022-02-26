@@ -1,8 +1,6 @@
 import pandas as pd
 import pysolr
-import time
 
-start = time.time()
 
 tweets = pd.read_csv('CZ4034_Tweets.csv', dtype={'id': str,'following':int,'followers':int,"totaltweets":int,
                                                 "retweetcount":int,"favoritecount":int})
@@ -21,8 +19,5 @@ query_search = "vaccine"
 
 search_results = solr.search("vaccine",sort='followers asc',df='text',rows=300)
 
-
-end = time.time()
-print("Time elapsed:",end - start)
 
 print(search_results.raw_response['response']['docs'])
