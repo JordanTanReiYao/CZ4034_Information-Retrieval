@@ -35,7 +35,7 @@ def get_results():
 
     start=time.time()
     search_results = solr.search(query,**params)
-    queryTime=time.time()-start
+    queryTime=round(time.time()-start,3)
 
     numDocs=search_results.raw_response['response']['numFound']
     
