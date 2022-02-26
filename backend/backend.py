@@ -43,7 +43,7 @@ def get_results():
     for doc in docs:
         doc.update((k, datetime.datetime.strftime(isoparse(v).astimezone(pytz.timezone('Asia/Singapore')),"%Y-%m-%d %H:%M:%S %z" )) for k, v in doc.items() if k == "usercreatedts" or k=='tweetcreatedts')
 
-    suggestions=search_results.raw_response['spellcheck']['suggestions'] if 'spellcheck' in search_results.raw_response else None
+    suggestions=search_results.raw_response['spellcheck']['suggestions'] if 'spellcheck' in search_results.raw_response else []
     return jsonify(queryTime=queryTime,numDocs=numDocs,docs=docs,suggestions=suggestions)
 
     
