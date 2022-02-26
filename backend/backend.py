@@ -1,7 +1,6 @@
-from flask import Flask, make_response, request,jsonify,json
-from flask_cors import CORS, cross_origin
+from flask import Flask,request,jsonify
+from flask_cors import CORS
 import pysolr
-import os
 import time
 import datetime
 from dateutil.parser import parse,isoparse
@@ -37,7 +36,7 @@ def get_results():
     start=time.time()
     search_results = solr.search(query,**params)
     queryTime=time.time()-start
-    
+
     numDocs=search_results.raw_response['response']['numFound']
     
     docs= search_results.raw_response['response']['docs']

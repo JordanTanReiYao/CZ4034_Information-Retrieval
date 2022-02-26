@@ -1,0 +1,7 @@
+## Install the following packages with command pip install -r requirements.txt
+pandas
+pysolr
+flask
+flask_cors
+pytz
+python-dateutil
