@@ -64,3 +64,5 @@
 2022-02-28 18:06:11.527 INFO  (qtp2101636817-28) [   x:tweets] o.a.s.c.S.Request [tweets]  webapp=/solr path=/select params={q="boost+shot"&df=text&sort=retweetcount+desc&rows=1000&wt=json} hits=0 status=0 QTime=29
 2022-02-28 18:06:19.223 INFO  (qtp2101636817-27) [   x:tweets] o.a.s.c.S.Request [tweets]  webapp=/solr path=/select params={q=boostr&df=text&sort=retweetcount+desc&rows=1000&wt=json} hits=0 status=0 QTime=8
 2022-02-28 18:06:23.090 INFO  (qtp2101636817-28) [   x:tweets] o.a.s.c.S.Request [tweets]  webapp=/solr path=/select params={q=hello&df=text&sort=retweetcount+desc&rows=1000&wt=json} hits=43 status=0 QTime=3
+2022-02-28 18:13:20.604 INFO  (qtp2101636817-28) [   x:tweets] o.a.s.c.S.Request [tweets]  webapp=/solr path=/select params={q=vaccine&df=text&sort=retweetcount+desc&rows=1000&wt=json} hits=18555 status=0 QTime=13
+2022-02-28 18:13:26.305 INFO  (qtp2101636817-23) [   x:tweets] o.a.s.c.S.Request [tweets]  webapp=/solr path=/select params={q=vaccine&df=text&sort=retweetcount+desc&wt=json} hits=18555 status=0 QTime=16
