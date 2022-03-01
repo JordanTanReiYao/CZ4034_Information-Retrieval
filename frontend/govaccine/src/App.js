@@ -1,23 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "./bootstrap/css/bootstrap.css";
+import SearchBar from "./components/searchBar";
+import NavBar from "./components/navbar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import TweetList from "./components/TweetsList";
+import React from "react";
 
 function App() {
+  const [query, setQuery] = React.useState();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar />
+      <div className="row mt-5 h-100">
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <div>
+                  <h1>GO VACCINES</h1>
+                  <br />
+                  <SearchBar query={query}></SearchBar>
+                </div>
+              }
+            />
+            <Route
+              path="/search/:queryParam"
+              element={
+                <div>
+                  <SearchBar ></SearchBar>
+                  <TweetList></TweetList>
+                </div>
+              }
+              // render={(routeProps) => (
+              //   <TweetList routeProps={routeProps} animate={true} />
+              // )}
+            />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </div>
   );
 }

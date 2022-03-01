@@ -1,12 +1,28 @@
 .App {
   text-align: center;
+  height: 100%;
+ /*  background-color: lightcyan;
+  background-image: url("./content/img/bg.jpg") ;
+  opacity: 0.5; */
 }
-
+html, body, #root {
+  height: 100%;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
+.TweetDateLabel
+{
+  color:#707e88;
+}
+.FilterPanel{
+  margin:5%;
+  border-right:#707e88;
+  border-right-width: 2px;
+  border-right-style: solid;
+  height: 100%;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
