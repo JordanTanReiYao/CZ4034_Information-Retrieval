@@ -257,3 +257,17 @@
 2022-03-01 19:05:35.745 INFO  (qtp1104443373-21) [   x:tweets] o.a.s.c.S.Request [tweets]  webapp=/solr path=/select params={q=vaccines&df=text&sort=tweetcreatedts+desc&rows=10&wt=json} hits=1018 status=0 QTime=0
 2022-03-01 19:08:03.194 INFO  (qtp1104443373-18) [   x:tweets] o.a.s.c.S.Request [tweets]  webapp=/solr path=/select params={q=pfizer&df=text&sort=tweetcreatedts+desc&rows=10&wt=json} hits=2827 status=0 QTime=1
 2022-03-01 19:11:26.561 INFO  (qtp1104443373-23) [   x:tweets] o.a.s.c.S.Request [tweets]  webapp=/solr path=/select params={q=pfizer&df=text&sort=tweetcreatedts+desc&rows=10&wt=json} hits=2827 status=0 QTime=0
+2022-03-01 19:16:39.320 INFO  (ShutdownMonitor) [   ] o.e.j.s.AbstractConnector Stopped ServerConnector@74751b3{HTTP/1.1, (http/1.1, h2c)}{0.0.0.0:8983}
+2022-03-01 19:16:39.320 INFO  (ShutdownMonitor) [   ] o.e.j.s.session node0 Stopped scavenging
+2022-03-01 19:16:39.326 INFO  (ShutdownMonitor) [   ] o.a.s.c.CoreContainer Shutting down CoreContainer instance=1552221437
+2022-03-01 19:16:39.332 INFO  (coreCloseExecutor-21-thread-1) [   ] o.a.s.c.SolrCore [tweets]  CLOSING SolrCore org.apache.solr.core.SolrCore@684a76c9
+2022-03-01 19:16:39.332 INFO  (coreCloseExecutor-21-thread-1) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.core.tweets tag=SolrCore@684a76c9
+2022-03-01 19:16:39.332 INFO  (coreCloseExecutor-21-thread-1) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@31f6ab5: rootName = null, domain = solr.core.tweets, service url = null, agent id = null] for registry solr.core.tweets/com.codahale.metrics.MetricRegistry@40b9d776
+2022-03-01 19:16:39.355 INFO  (coreCloseExecutor-21-thread-1) [   ] o.a.s.u.DirectUpdateHandler2 Committing on IndexWriter.close()  ... SKIPPED (unnecessary).
+2022-03-01 19:16:39.385 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.node tag=null
+2022-03-01 19:16:39.385 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@6a4d7f76: rootName = null, domain = solr.node, service url = null, agent id = null] for registry solr.node/com.codahale.metrics.MetricRegistry@27085a11
+2022-03-01 19:16:39.388 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jvm tag=null
+2022-03-01 19:16:39.388 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@76911385: rootName = null, domain = solr.jvm, service url = null, agent id = null] for registry solr.jvm/com.codahale.metrics.MetricRegistry@59d4a4bb
+2022-03-01 19:16:39.389 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jetty tag=null
+2022-03-01 19:16:39.389 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@5467eea4: rootName = null, domain = solr.jetty, service url = null, agent id = null] for registry solr.jetty/com.codahale.metrics.MetricRegistry@54b7fe5f
+2022-03-01 19:16:39.405 INFO  (ShutdownMonitor) [   ] o.e.j.s.h.ContextHandler Stopped o.e.j.w.WebAppContext@221a3fa4{/solr,null,STOPPED}{C:\_DEV\CZ4034_Information-Retrieval\backend\solr-8.11.1\server/solr-webapp/webapp}

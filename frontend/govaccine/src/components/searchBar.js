@@ -12,7 +12,7 @@ export default function SearchBar(props) {
   }
 
   function onClick(event) {
-    if (query != "") {
+    if (query !== "") {
       navigate("/search/" + query);
     }
   }

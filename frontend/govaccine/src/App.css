@@ -1,8 +1,9 @@
 .App {
   text-align: center;
   height: 100%;
- /*  background-color: lightcyan;
-  background-image: url("./content/img/bg.jpg") ;
+  background:  hsl(210, 36%, 96%);
+  color: hsl(209, 61%, 16%);;
+ /*   background-image: url("./content/img/bg.jpg") ;
   opacity: 0.5; */
 }
 html, body, #root {
