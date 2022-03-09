@@ -3,7 +3,7 @@ import "./bootstrap/css/bootstrap.css";
 import SearchBar from "./components/searchBar";
 import NavBar from "./components/navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import TweetList from "./components/TweetsList";
+import TweetsList from "./components/TweetsList";
 import React from "react";
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
               element={
                 <div>
                   <SearchBar ></SearchBar>
-                  <TweetList></TweetList>
+                  <TweetsList></TweetsList>
                 </div>
               }
               // render={(routeProps) => (
