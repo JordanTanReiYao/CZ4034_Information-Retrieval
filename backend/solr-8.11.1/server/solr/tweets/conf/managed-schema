@@ -277,34 +277,26 @@
   <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100" multiValued="false">
     <analyzer type="index">
       <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[^A-Za-z0-9]+" replacement=" "/>
-      <tokenizer class="solr.StandardTokenizerFactory"/>
-      <filter class="solr.ClassicFilterFactory"/>
+      <tokenizer class="solr.OpenNLPTokenizerFactory"
+      sentenceModel="opennlp-en-ud-ewt-sentence-1.0-1.9.3.bin"
+      tokenizerModel="opennlp-en-ud-ewt-tokens-1.0-1.9.3.bin"/>
       <filter class="solr.LowerCaseFilterFactory"/>
       <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
-      <filter class="solr.PatternReplaceFilterFactory" pattern="(\s+)" replace="all" replacement="\s"/>
-      <filter class="solr.PatternReplaceFilterFactory" pattern="([^A-Za-z0-9]+)" replace="all" replacement="\s"/>
-      <filter class="solr.PatternReplaceFilterFactory" pattern="(\s+)" replace="all" replacement="\s"/>
+      <filter class="solr.SynonymGraphFilterFactory" expand="true" ignoreCase="true" synonyms="synonyms.txt"/>
+      <filter class="solr.OpenNLPPOSFilterFactory" posTaggerModel="en-pos-maxent.bin"/>
+      <filter class="solr.OpenNLPLemmatizerFilterFactory"
+              dictionary="en-lemmatizer.txt"/>  
     </analyzer>
     <analyzer type="query">
     <tokenizer class="solr.OpenNLPTokenizerFactory"
-                    sentenceModel="opennlp-en-ud-ewt-sentence-1.0-1.9.3.bin"
-                    tokenizerModel="opennlp-en-ud-ewt-tokens-1.0-1.9.3.bin"/>
-            <!--<filter class="solr.ClassicFilterFactory"/>-->
+      sentenceModel="opennlp-en-ud-ewt-sentence-1.0-1.9.3.bin"
+      tokenizerModel="opennlp-en-ud-ewt-tokens-1.0-1.9.3.bin"/>
       <filter class="solr.LowerCaseFilterFactory"/>
       <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
       <filter class="solr.SynonymGraphFilterFactory" expand="true" ignoreCase="true" synonyms="synonyms.txt"/>
-            <filter class="solr.OpenNLPPOSFilterFactory" posTaggerModel="en-pos-maxent.bin"/>
-            <filter class="solr.OpenNLPLemmatizerFilterFactory"
-                    dictionary="en-lemmatizer.txt"/>                        
-    <!--
-      <tokenizer class="solr.StandardTokenizerFactory"/>
-      <filter class="solr.ClassicFilterFactory"/>
-      <filter class="solr.LowerCaseFilterFactory"/>
-      <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
-      <filter class="solr.SynonymGraphFilterFactory" expand="true" ignoreCase="true" synonyms="synonyms.txt"/>
-      <filter class="solr.PatternReplaceFilterFactory" pattern="(\s+)" replace="all" replacement="\s"/>
-      <filter class="solr.PatternReplaceFilterFactory" pattern="([^A-Za-z0-9]+)" replace="all" replacement="\s"/>
-      <filter class="solr.PatternReplaceFilterFactory" pattern="(\s+)" replace="all" replacement="\s"/>-->
+      <filter class="solr.OpenNLPPOSFilterFactory" posTaggerModel="en-pos-maxent.bin"/>
+      <filter class="solr.OpenNLPLemmatizerFilterFactory"
+              dictionary="en-lemmatizer.txt"/>                        
     </analyzer>
   </fieldType>
   <fieldType name="text_general_rev" class="solr.TextField" positionIncrementGap="100">
