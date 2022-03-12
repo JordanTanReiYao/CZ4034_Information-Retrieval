@@ -20,6 +20,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
+import Progress from './progress/progress.js';
 
 
 function TweetsListPaginationActions(props) {
@@ -87,6 +88,7 @@ TweetsListPaginationActions.propTypes = {
 
 export default function TweetsList() {
   const [tweets, setTweets] = useState([]);
+  const [loading, setLoading] = useState(true);
   let { queryParam } = useParams();
   const [query, SetQuery] = React.useState();
 
@@ -97,11 +99,13 @@ export default function TweetsList() {
   }, [queryParam]);
 
   const retrieveTweets = (query, numResults, sortBy, sortOrder) => {
+    setLoading(true);
     tweetsService
       .getTweets(query, numResults, sortBy, sortOrder)
       .then((response) => {
         console.log(response.data);
         setTweets(response.data.docs);
+        setLoading(false);
       })
       .catch((e) => {
         console.log(e);
@@ -125,7 +129,8 @@ export default function TweetsList() {
   };
 
   return (
-    <TableContainer component={Paper}>
+    <div>{loading?<Progress message='Retrieving Tweets'/>:
+    (<TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableBody>
           {(rowsPerPage > 0
@@ -173,7 +178,8 @@ export default function TweetsList() {
           </TableRow>
         </TableFooter>
       </Table>
-    </TableContainer>
+    </TableContainer>)}
+    </div>
   );
 }
 
