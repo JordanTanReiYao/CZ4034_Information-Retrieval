@@ -21,6 +21,7 @@ def get_results():
     query=request.args.get('query',type=str)
     params['df']=request.args.get('field',type=str)
     numResults=request.args.get('numResults',type=str)
+    sentiment=request.args.get('sentiment',type=str)
     if numResults!='all':
         params['rows']=int(numResults)
 
@@ -30,12 +31,16 @@ def get_results():
     if sortBy!='relevance':
         params['sort']="{} {}".format(sortBy,sortOrder)
 
+    filter=[]
+    if sentiment!='all':
+        filter.append('sentiment:{}'.format(sentiment))
+
     queryItems=query.split()
     if len(queryItems)>1 and not 'AND' in queryItems and not 'OR' in queryItems:
         query="\""+query+"\""
 
     start=time.time()
-    search_results = solr.search(query,**params)
+    search_results = solr.search(query,**params,fq=filter)
     queryTime=round(time.time()-start,3)
 
     numDocs=search_results.raw_response['response']['numFound']
