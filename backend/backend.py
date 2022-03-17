@@ -38,7 +38,7 @@ def get_results():
     queryItems=query.split()
     if len(queryItems)>1 and not 'AND' in queryItems and not 'OR' in queryItems:
         query="\""+query+"\""
-
+    print(params)
     start=time.time()
     search_results = solr.search(query,**params,fq=filter)
     queryTime=round(time.time()-start,3)

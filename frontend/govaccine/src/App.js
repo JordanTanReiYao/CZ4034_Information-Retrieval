@@ -7,7 +7,7 @@ import TweetsList from "./components/TweetsList";
 import React from "react";
 
 function App() {
-  const [query, setQuery] = React.useState();
+  
 
   return (
     <div className="App">
@@ -21,16 +21,18 @@ function App() {
                 <div>
                   <h1>GO VACCINES</h1>
                   <br />
-                  <SearchBar query={query}></SearchBar>
+                  <SearchBar ></SearchBar>
+                
                 </div>
               }
             />
             <Route
-              path="/search/:queryParam"
+              path="/search/:queryParam/:sortByParam/:sortOrderParam/:sentimentTypeParam/:numResultsParam"
               element={
                 <div>
-                  <SearchBar ></SearchBar>
-                  <TweetsList></TweetsList>
+                  <SearchBar></SearchBar>
+                  
+                  <TweetsList ></TweetsList>
                 </div>
               }
               // render={(routeProps) => (

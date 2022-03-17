@@ -21,7 +21,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import Progress from './progress/progress.js';
-
+import NormalDropdown from './Dropdown/NormalDropdown.js'
 
 function TweetsListPaginationActions(props) {
   const theme = useTheme();
@@ -86,17 +86,25 @@ TweetsListPaginationActions.propTypes = {
 };
 
 
-export default function TweetsList() {
-  const [tweets, setTweets] = useState([]);
+export default function TweetsList(props) {
+  const [tweets, setTweets] = useState(props.tweets);
   const [loading, setLoading] = useState(true);
-  let { queryParam } = useParams();
+  let { queryParam,sentimentTypeParam,sortByParam,sortOrderParam,numResultsParam } = useParams();
+  const [sentimentType,setSentimentType]= useState();
+  const [sortBy,setSortBy]=React.useState();
+  const [sortOrder,setSortOrder]=React.useState();
+  const [numResults,setNumResults]=React.useState('all');
   const [query, SetQuery] = React.useState();
 
   useEffect(() => {
-    SetQuery(queryParam || "");
-    console.log(queryParam);
-    retrieveTweets(queryParam, "all", "tweetcreatedts", "desc",'all');
-  }, [queryParam]);
+    //SetQuery(queryParam || "");
+    //setSentimentType(sentimentTypeParam);
+    //setSortBy(sortByParam);
+    //setSortOrder(sortOrderParam);
+    //setNumResults(numResultsParam);
+    console.log(queryParam,sentimentTypeParam);
+    retrieveTweets(queryParam, numResultsParam, sortByParam, sortOrderParam,sentimentTypeParam);
+  }, [queryParam,sentimentTypeParam,sortByParam,sortOrderParam,numResultsParam ]);
 
   const retrieveTweets = (query, numResults, sortBy, sortOrder,sentiment) => {
     setLoading(true);
@@ -128,8 +136,12 @@ export default function TweetsList() {
     setPage(0);
   };
 
+ 
+
   return (
-    <div>{loading?<Progress message='Retrieving Tweets'/>:
+    <div>
+    
+      {loading?<Progress message='Retrieving Tweets'/>:
     (<TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableBody>
