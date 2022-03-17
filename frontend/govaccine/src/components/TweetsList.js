@@ -95,13 +95,13 @@ export default function TweetsList() {
   useEffect(() => {
     SetQuery(queryParam || "");
     console.log(queryParam);
-    retrieveTweets(queryParam, "all", "tweetcreatedts", "desc");
+    retrieveTweets(queryParam, "all", "tweetcreatedts", "desc",'all');
   }, [queryParam]);
 
-  const retrieveTweets = (query, numResults, sortBy, sortOrder) => {
+  const retrieveTweets = (query, numResults, sortBy, sortOrder,sentiment) => {
     setLoading(true);
     tweetsService
-      .getTweets(query, numResults, sortBy, sortOrder)
+      .getTweets(query, numResults, sortBy, sortOrder,sentiment)
       .then((response) => {
         console.log(response.data);
         setTweets(response.data.docs);
