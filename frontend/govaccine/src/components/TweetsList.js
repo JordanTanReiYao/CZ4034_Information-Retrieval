@@ -20,8 +20,20 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import Progress from './progress/progress.js';
-import NormalDropdown from './Dropdown/NormalDropdown.js'
+import CardActions from '@mui/material/CardActions';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import ReactPaginate from 'react-paginate';
+import './TweetsList.css';
+import Grid from '@material-ui/core/Grid';
+import retweeticon from '../assets/retweet.png';
+import { styled } from '@mui/material/styles';
+import { makeStyles } from "@material-ui/core/styles";
+import Divider from '@mui/material/Divider';
+import Tooltip from '@mui/material/Tooltip';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function TweetsListPaginationActions(props) {
   const theme = useTheme();
@@ -95,6 +107,9 @@ export default function TweetsList(props) {
   const [sortOrder,setSortOrder]=React.useState();
   const [numResults,setNumResults]=React.useState('all');
   const [query, SetQuery] = React.useState();
+  const [pageCount,setPageCount]=React.useState();
+  const [perPage,setPerPage]=React.useState(20);
+  const [displayData,setDisplayData]=React.useState([]);
 
   useEffect(() => {
     //SetQuery(queryParam || "");
@@ -114,6 +129,8 @@ export default function TweetsList(props) {
         console.log(response.data);
         setTweets(response.data.docs);
         setLoading(false);
+        setPageCount(Math.ceil(response.data.docs.length / perPage));
+        setDisplayData(response.data.docs.slice(offset,offset+perPage))
       })
       .catch((e) => {
         console.log(e);
@@ -122,6 +139,11 @@ export default function TweetsList(props) {
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [minValue,setminValue]=React.useState(0);
+  const [maxValue,setmaxValue]=React.useState(20);
+  const [currentPage,setCurrentPage]=React.useState(0);
+  const [offset,setOffset]=React.useState(0);
+  
 
   // To prevent shrinking of last page in case of empty rows
   const emptyRows =
@@ -136,13 +158,120 @@ export default function TweetsList(props) {
     setPage(0);
   };
 
+  const handleChange = value => {
+    if (value <= 1) {
+      setminValue(0)
+      setmaxValue(9)
+  
+    } else {
+      setminValue(maxValue)
+      setmaxValue(value*maxValue)
+      
+    }
+  };
+
+  const handlePageClick = (e) => {
+    const selectedPage = e.selected;
+    const offset = selectedPage * perPage;
+    console.log(e.selected*perPage,e.selected*perPage+perPage);
+    setCurrentPage(selectedPage);
+    setOffset(offset);
+    setDisplayData(tweets.slice(e.selected*perPage,e.selected*perPage+perPage))
+    };
+
+    <Grid
+  container
+  spacing={0}
+  direction="column"
+  alignItems="center"
+  justify="center"
+  style={{ minHeight: '100vh' }}
+ ></Grid>
+
+ const useStyles = makeStyles(() => ({
+  lowerMetaData: {
+    alignItems: "center",
+    display: "flex",
+    flexDirection:'row',
+    justifyContent:'flex-start',
+    alignContent:'flex-start',
+    width:'100%',
+    margin:'0px'
+  }
+}));
  
+const classes = useStyles();
 
   return (
+    
     <div>
     
       {loading?<Progress message='Retrieving Tweets'/>:
-    (<TableContainer component={Paper}>
+    ( <div >
+      {
+      
+      displayData.length > 0 &&
+      displayData.slice(minValue, maxValue).map(tweet => (
+      <Card className='card'>
+      <CardContent style={{width:'100%', padding:'0px'}}>
+        <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',width:'100%',alignContent:'center',backgroundColor:'#92A8D1'}}>
+        <AccountCircleIcon sx={{ color: 'grey',m:0,mt:2,fontSize:50 }}/>
+      <Tooltip title={<div><span style={{ color: "lightblue", fontSize:16 }}>Acct Desc: {tweet.acctdesc}</span><br></br><span style={{ color: "lightblue", fontSize:16 }}>Location: {tweet.location}</span></div>} sx={{ fontSize: 13 }} >
+      <Typography className='userName' sx={{ fontSize: 20,mt:0.5,mb:0.5, width:'100%',fontWeight:'bold' }} color='blue' variant="h5" component="div" width='100%'>
+          {tweet.username}
+          
+        </Typography>
+        </Tooltip>
+        <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>
+        <Typography sx={{ fontSize: 13,fontWeight:'bold',mb:1,my:0,mr:2}}>Followers: <span style={{fontSize: 13,fontWeight:'bold',color:'blue'}}>{tweet.followers}</span></Typography>
+        <Typography sx={{ fontSize: 13,my:0,mr:2,mb:1,fontWeight:'bold'  }} >Following: <span style={{fontSize: 13,fontWeight:'bold',color:'blue'}}>{tweet.following}</span></Typography>
+        <Typography sx={{ fontSize: 13,my:0,fontWeight:'bold',mb:1 }} >Total Tweets: <span style={{fontSize: 13,fontWeight:'bold',color:'blue'}}>{tweet.totaltweets}</span></Typography>
+
+        </div>
+        </div>
+        <Divider align='center' />
+        <Grid container sx={{color:'blue'}} style={{padding:'17px'}}>
+        <Typography sx={{ fontSize: 17,my:3, width:'100%' }} color="text.primary" gutterBottom>
+          {tweet.text}
+        </Typography>
+        
+        
+        <Grid container direction="row" alignItems="center" justifyContent='space-between' display='flex' borderColor='red' width='100%' margin='0px'>
+          <div style={{display:'flex',flexDirection:'row',alignItems:'center',margin:'0px',marginRight:'12px'}}>
+       <FavoriteIcon sx={{ color: 'red',marginRight:'5px' }}/> 
+        <Typography  sx={{ mr: 3 }}>{tweet.favoritecount}</Typography>
+        <img src={retweeticon} style={{height:'35px',margin:'0px'}}/>
+        <Typography>{tweet.retweetcount}</Typography>
+        </div>
+       <div style={{fontSize:'17px',fontWeight:'bold',backgroundColor:tweet.sentiment=='positive'?'green':(tweet.sentiment=='neutral'?'lightblue':'red'),color:'white',padding:'10px',borderRadius:'10px'}}>{tweet.sentiment.charAt(0).toUpperCase() + tweet.sentiment.slice(1)}</div>
+        <Typography sx={{ mb: 0 }} align='right' color="text.primary">
+          {tweet.tweetcreatedts}
+        </Typography>
+        </Grid>
+        </Grid>
+      </CardContent>
+     
+    </Card>
+    ))
+      }
+      <ReactPaginate
+                    previousLabel={"prev"}
+                    nextLabel={"next"}
+                    breakLabel={"..."}
+                    breakClassName={"break-me"}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={handlePageClick}
+                    containerClassName={"pagination"}
+                    subContainerClassName={"pages pagination"}
+                    activeClassName={"active"}/>
+      </div>)}
+   
+    </div>
+  );
+}
+      /*<TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableBody>
           {(rowsPerPage > 0
@@ -190,10 +319,8 @@ export default function TweetsList(props) {
           </TableRow>
         </TableFooter>
       </Table>
-    </TableContainer>)}
-    </div>
-  );
-}
+      
+    </TableContainer>*/
 
 
 // export default function TweetList() {
