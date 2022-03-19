@@ -223,9 +223,9 @@ const classes = useStyles();
         </Typography>
         </Tooltip>
         <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>
-        <Typography sx={{ fontSize: 13,fontWeight:'bold',mb:1,my:0,mr:2}}>Followers: <span style={{fontSize: 13,fontWeight:'bold',color:'blue'}}>{tweet.followers}</span></Typography>
-        <Typography sx={{ fontSize: 13,my:0,mr:2,mb:1,fontWeight:'bold'  }} >Following: <span style={{fontSize: 13,fontWeight:'bold',color:'blue'}}>{tweet.following}</span></Typography>
-        <Typography sx={{ fontSize: 13,my:0,fontWeight:'bold',mb:1 }} >Total Tweets: <span style={{fontSize: 13,fontWeight:'bold',color:'blue'}}>{tweet.totaltweets}</span></Typography>
+        <Typography sx={{ fontSize: 13,fontWeight:'bold',mb:1.5,my:0,mr:2}}>Followers: <span style={{fontSize: 13,fontWeight:'bold',color:'blue'}}>{tweet.followers}</span></Typography>
+        <Typography sx={{ fontSize: 13,my:0,mr:2,mb:1.5,fontWeight:'bold'  }} >Following: <span style={{fontSize: 13,fontWeight:'bold',color:'blue'}}>{tweet.following}</span></Typography>
+        <Typography sx={{ fontSize: 13,my:0,fontWeight:'bold',mb:1.5 }} >Total Tweets: <span style={{fontSize: 13,fontWeight:'bold',color:'blue'}}>{tweet.totaltweets}</span></Typography>
 
         </div>
         </div>
