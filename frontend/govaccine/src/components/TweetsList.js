@@ -130,7 +130,7 @@ export default function TweetsList(props) {
         setTweets(response.data.docs);
         setLoading(false);
         setPageCount(Math.ceil(response.data.docs.length / perPage));
-        setDisplayData(response.data.docs.slice(offset,offset+perPage))
+        setDisplayData(response.data.docs.slice(0,perPage))
       })
       .catch((e) => {
         console.log(e);
