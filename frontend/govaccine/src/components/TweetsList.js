@@ -205,6 +205,7 @@ export default function TweetsList(props) {
 }));
 
 const clickSuggestion=e=>{
+  SetQuery(suggestions)
   navigate("/search/" + suggestions+"/"+sortBy+"/"+sortOrder+"/"+sentimentType+"/"+numResults);
 };
  

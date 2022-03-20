@@ -47,7 +47,7 @@ export default function SearchBar(props) {
     setNumResults(numResultsParam);
     setSortBy(sortByParam);
     setSortOrder(sortOrderParam);
-  }, []);
+  }, [queryParam,sentimentTypeParam,sortByParam,sortOrderParam,numResultsParam]);
 
   return (
     <div className="col-6 m-auto">
