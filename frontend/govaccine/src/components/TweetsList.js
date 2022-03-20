@@ -3,7 +3,7 @@ import tweetsService from "../services/tweetsService";
 import TablePagination from '@mui/material/TablePagination';
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
@@ -110,19 +110,20 @@ export default function TweetsList(props) {
   const [pageCount,setPageCount]=React.useState();
   const [perPage,setPerPage]=React.useState(20);
   const [displayData,setDisplayData]=React.useState([]);
-
+  const [suggestions,setSuggestions]=React.useState([]);
   useEffect(() => {
-    //SetQuery(queryParam || "");
-    //setSentimentType(sentimentTypeParam);
-    //setSortBy(sortByParam);
-    //setSortOrder(sortOrderParam);
-    //setNumResults(numResultsParam);
+    SetQuery(queryParam || "");
+    setSentimentType(sentimentTypeParam);
+    setSortBy(sortByParam);
+    setSortOrder(sortOrderParam);
+    setNumResults(numResultsParam);
     console.log(queryParam,sentimentTypeParam);
     retrieveTweets(queryParam, numResultsParam, sortByParam, sortOrderParam,sentimentTypeParam);
   }, [queryParam,sentimentTypeParam,sortByParam,sortOrderParam,numResultsParam ]);
 
   const retrieveTweets = (query, numResults, sortBy, sortOrder,sentiment) => {
     setLoading(true);
+    setSuggestions([]);
     tweetsService
       .getTweets(query, numResults, sortBy, sortOrder,sentiment)
       .then((response) => {
@@ -131,6 +132,8 @@ export default function TweetsList(props) {
         setLoading(false);
         setPageCount(Math.ceil(response.data.docs.length / perPage));
         setDisplayData(response.data.docs.slice(0,perPage))
+        setSuggestions(response.data.suggestions.length>0?response.data.suggestions[1].suggestion[0]:[])
+        console.log(suggestions)
       })
       .catch((e) => {
         console.log(e);
@@ -143,7 +146,8 @@ export default function TweetsList(props) {
   const [maxValue,setmaxValue]=React.useState(20);
   const [currentPage,setCurrentPage]=React.useState(0);
   const [offset,setOffset]=React.useState(0);
-  
+  const navigate = useNavigate();
+
 
   // To prevent shrinking of last page in case of empty rows
   const emptyRows =
@@ -199,18 +203,22 @@ export default function TweetsList(props) {
     margin:'0px'
   }
 }));
+
+const clickSuggestion=e=>{
+  navigate("/search/" + suggestions+"/"+sortBy+"/"+sortOrder+"/"+sentimentType+"/"+numResults);
+};
  
 const classes = useStyles();
 
   return (
     
-    <div>
+    <div style={{height:'100vh',display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
     
       {loading?<Progress message='Retrieving Tweets'/>:
     ( <div >
       {
       
-      displayData.length > 0 &&
+      displayData.length > 0?
       displayData.slice(minValue, maxValue).map(tweet => (
       <Card className='card'>
       <CardContent style={{width:'100%', padding:'0px'}}>
@@ -252,8 +260,9 @@ const classes = useStyles();
       </CardContent>
      
     </Card>
-    ))
+    )):<div style={{height:'100%'}}>{suggestions.length>0?<div style={{fontSize:18,fontStyle:'italic'}}>Did you mean <span style={{fontSize:18,fontStyle:'italic',color:'red',textDecoration:'underline',cursor:'pointer'}} onClick={clickSuggestion}>{suggestions}</span>?</div>:null}<div style={{fontSize:30,color:'blue',marginTop:'40px',fontStyle:'italic'}}>No Tweets Found</div></div>
       }
+      {displayData.length>0&&
       <ReactPaginate
                     previousLabel={"prev"}
                     nextLabel={"next"}
@@ -265,7 +274,7 @@ const classes = useStyles();
                     onPageChange={handlePageClick}
                     containerClassName={"pagination"}
                     subContainerClassName={"pages pagination"}
-                    activeClassName={"active"}/>
+                    activeClassName={"active"}/>}
       </div>)}
    
     </div>
