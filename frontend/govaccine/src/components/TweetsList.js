@@ -261,7 +261,7 @@ const classes = useStyles();
       </CardContent>
      
     </Card>
-    )):<div style={{height:'100%'}}>{suggestions.length>0?<div style={{fontSize:18,fontStyle:'italic'}}>Did you mean <span style={{fontSize:18,fontStyle:'italic',color:'red',textDecoration:'underline',cursor:'pointer'}} onClick={clickSuggestion}>{suggestions}</span>?</div>:null}<div style={{fontSize:30,color:'blue',marginTop:'40px',fontStyle:'italic'}}>No Tweets Found</div></div>
+    )):<div style={{height:'100%',margin:'10px'}}>{suggestions.length>0?<div style={{fontSize:18,fontStyle:'italic'}}>Did you mean <span style={{fontSize:18,fontStyle:'italic',color:'red',textDecoration:'underline',cursor:'pointer'}} onClick={clickSuggestion}>{suggestions}</span>?</div>:null}<div style={{fontSize:30,color:'blue',marginTop:'40px',fontStyle:'italic'}}>No tweets found for <span style={{fontStyle:'italic',color:'red'}}>{queryParam}</span></div></div>
       }
       {displayData.length>0&&
       <ReactPaginate
