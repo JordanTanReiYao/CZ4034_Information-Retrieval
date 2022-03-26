@@ -6,7 +6,6 @@ import CardContent from "@mui/material/CardContent";
 import { useParams, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -22,80 +21,17 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Progress from './progress/progress.js';
-import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ReactPaginate from 'react-paginate';
 import './TweetsList.css';
 import Grid from '@material-ui/core/Grid';
 import retweeticon from '../assets/retweet.png';
-import { styled } from '@mui/material/styles';
-import { makeStyles } from "@material-ui/core/styles";
 import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
-function TweetsListPaginationActions(props) {
-  const theme = useTheme();
-  const { count, page, rowsPerPage, onPageChange } = props;
-
-  const handleFirstPageButtonClick = (event) => {
-    onPageChange(event, 0);
-  };
-
-  const handleBackButtonClick = (event) => {
-    onPageChange(event, page - 1);
-  };
-
-  const handleNextButtonClick = (event) => {
-    onPageChange(event, page + 1);
-  };
-
-  const handleLastPageButtonClick = (event) => {
-    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-  };
-
-  return (
-    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-      <IconButton
-        onClick={handleFirstPageButtonClick}
-        disabled={page === 0}
-        aria-label="first page"
-      >
-        {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
-      </IconButton>
-      <IconButton
-        onClick={handleBackButtonClick}
-        disabled={page === 0}
-        aria-label="previous page"
-      >
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-      </IconButton>
-      <IconButton
-        onClick={handleNextButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="next page"
-      >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-      </IconButton>
-      <IconButton
-        onClick={handleLastPageButtonClick}
-        disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-        aria-label="last page"
-      >
-        {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
-      </IconButton>
-    </Box>
-  );
-}
-
-
-TweetsListPaginationActions.propTypes = {
-  count: PropTypes.number.isRequired,
-  onPageChange: PropTypes.func.isRequired,
-  page: PropTypes.number.isRequired,
-  rowsPerPage: PropTypes.number.isRequired,
-};
+import DonutChart from "react-donut-chart";
+import { useModal } from 'react-hooks-use-modal';
 
 
 export default function TweetsList(props) {
@@ -111,6 +47,28 @@ export default function TweetsList(props) {
   const [perPage,setPerPage]=React.useState(20);
   const [displayData,setDisplayData]=React.useState([]);
   const [suggestions,setSuggestions]=React.useState([]);
+  const [sentimentResults,setSentimentResults]=React.useState([
+    {
+      label: "Positive",
+      value: -1,
+      color: "#00E396"
+    },
+    {
+      label: "Neutral",
+      value: -1,
+      color: "#FEB019"
+    },
+    {
+      label: "Negative",
+      value: -1,
+      color: "#FF4560"
+    },
+    
+  ])
+  const [Modal, open, close, isOpen] = useModal('root', {
+    preventScroll: true,
+    closeOnOverlayClick: true
+  });
   useEffect(() => {
     SetQuery(queryParam || "");
     setSentimentType(sentimentTypeParam);
@@ -127,14 +85,25 @@ export default function TweetsList(props) {
     tweetsService
       .getTweets(query, numResults, sortBy, sortOrder,sentiment)
       .then((response) => {
-        console.log(response.data);
+        
+        console.log('hi',sentimentResults);
         setTweets(response.data.docs);
         setLoading(false);
         setPageCount(Math.ceil(response.data.docs.length / perPage));
         setDisplayData(response.data.docs.slice(0,perPage))
         setSuggestions(response.data.suggestions.length>0?response.data.suggestions[1].suggestion[0]:[])
-        console.log(suggestions)
-      })
+        const newSentiments =sentimentResults.map(sentiments=>{
+          return {...sentiments, value: response.data.docs.filter (({sentiment}) => sentiment === sentiments.label.toLowerCase()).length}
+        })
+        setSentimentResults(newSentiments)
+          
+        })
+        
+         /* {...sentimentResults,"positive":response.data.docs.filter (({sentiment}) => sentiment === 'positive').length,
+        "negative":response.data.docs.filter (({sentiment}) => sentiment === 'negative').length,
+        "neutral":response.data.docs.filter (({sentiment}) => sentiment === 'neutral').length}*/
+
+      
       .catch((e) => {
         console.log(e);
       });
@@ -192,37 +161,66 @@ export default function TweetsList(props) {
   style={{ minHeight: '100vh' }}
  ></Grid>
 
- const useStyles = makeStyles(() => ({
-  lowerMetaData: {
-    alignItems: "center",
-    display: "flex",
-    flexDirection:'row',
-    justifyContent:'flex-start',
-    alignContent:'flex-start',
-    width:'100%',
-    margin:'0px'
-  }
-}));
+
 
 const clickSuggestion=e=>{
   SetQuery(suggestions)
   navigate("/search/" + suggestions+"/"+sortBy+"/"+sortOrder+"/"+sentimentType+"/"+numResults);
 };
  
-const classes = useStyles();
+
+const reactDonutChartdata = [
+  {
+    label: "Positive",
+    value: 25,
+    color: "#00E396"
+  },
+  {
+    label: "Neutral",
+    value: 65,
+    color: "#FEB019"
+  },
+  {
+    label: "Negative",
+    value: 100,
+    color: "#FF4560"
+  },
+  
+];
+const reactDonutChartBackgroundColor = [
+  "#00E396",
+  "#FEB019",
+  "#FF4560",
+  "#775DD0"
+];
+const reactDonutChartInnerRadius = 0.5;
+const reactDonutChartSelectedOffset = 0.04;
+const reactDonutChartHandleClick = (item, toggled) => {
+  if (toggled) {
+    console.log(item);
+  }
+};
+let reactDonutChartStrokeColor = "#FFFFFF";
+const reactDonutChartOnMouseEnter = (item) => {
+  let color = reactDonutChartdata.find((q) => q.label === item.label).color;
+  reactDonutChartStrokeColor = color;
+};
+
 
   return (
     
     <div style={{height:'100vh',display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
-    
+      
+     
       {loading?<Progress message='Retrieving Tweets'/>:
     ( <div >
+      <Button onClick={open} style={{backgroundColor:'white',border:'1px solid black',marginTop:'25px',marginBottom:'0px',paddingLeft:'20px',paddingRight:'20px'}} >View Sentiment Visualization</Button>
       {
       
-      displayData.length > 0?
+      displayData.length > 0 && sentimentResults[0].value!=-1?
       displayData.slice(minValue, maxValue).map(tweet => (
       <Card className='card'>
-      <CardContent style={{width:'100%', padding:'0px'}}>
+      <CardContent style={{width:'100%', padding:'0px',marginTop:'1px'}}>
         <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',width:'100%',alignContent:'center',backgroundColor:'#92A8D1'}}>
         <AccountCircleIcon sx={{ color: 'grey',m:0,mt:2,fontSize:50 }}/>
       <Tooltip title={<div><span style={{ color: "lightblue", fontSize:16 }}>Acct Desc: {tweet.acctdesc}</span><br></br><span style={{ color: "lightblue", fontSize:16 }}>Location: {tweet.location}</span></div>} sx={{ fontSize: 13 }} >
@@ -261,9 +259,12 @@ const classes = useStyles();
       </CardContent>
      
     </Card>
+    
+    
     )):<div style={{height:'100%',margin:'10px'}}>{suggestions.length>0?<div style={{fontSize:18,fontStyle:'italic'}}>Did you mean <span style={{fontSize:18,fontStyle:'italic',color:'red',textDecoration:'underline',cursor:'pointer'}} onClick={clickSuggestion}>{suggestions}</span>?</div>:null}<div style={{fontSize:30,color:'blue',marginTop:'40px',fontStyle:'italic'}}>No tweets found for <span style={{fontStyle:'italic',color:'red'}}>{queryParam}</span></div></div>
       }
       {displayData.length>0&&
+      <div>
       <ReactPaginate
                     previousLabel={"prev"}
                     nextLabel={"next"}
@@ -275,134 +276,38 @@ const classes = useStyles();
                     onPageChange={handlePageClick}
                     containerClassName={"pagination"}
                     subContainerClassName={"pages pagination"}
-                    activeClassName={"active"}/>}
+                    activeClassName={"active"}/>
+                     
+                    <div>
+      
+      <Modal>
+        <div style={{backgroundColor:'white',padding:'0px',display:'flex',flexDirection:'column',
+        justifyContent:'center',alignItems:'center',alignContent:'center',border:'2px solid red',
+        height:'80vh',padding:'10px'}}>
+          <h1 style={{marginBottom:'20px'}}>Distribution of Sentiment</h1>
+        <DonutChart
+        className="donut"
+        style={{fontSize:'20px'}}
+        width={700}
+        onMouseEnter={(item) => reactDonutChartOnMouseEnter(item)}
+        strokeColor={reactDonutChartStrokeColor}
+        data={sentimentResults}
+        colors={reactDonutChartBackgroundColor}
+        innerRadius={reactDonutChartInnerRadius}
+        selectedOffset={reactDonutChartSelectedOffset}
+        onClick={(item, toggled) => reactDonutChartHandleClick(item, toggled)}
+        />
+          <Button onClick={close}>CLOSE</Button>
+        </div>
+      </Modal>
+    </div>
+
+                    </div> 
+                    }
+                   
       </div>)}
+      
    
     </div>
   );
 }
-      /*<TableContainer component={Paper}>
-      <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-        <TableBody>
-          {(rowsPerPage > 0
-            ? tweets.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : tweets
-          ).map((tweet) => (
-            <TableRow key={tweet.text}>
-              <TableCell component="th" scope="row">
-                {tweet.text}
-              </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {tweet.username}
-              </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {tweet.tweetcreatedts}
-              </TableCell>
-            </TableRow>
-          ))}
-
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
-            </TableRow>
-          )}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[10, 20, 50, { label: 'All', value: -1 }]}
-              colSpan={3}
-              count={tweets.length}
-              rowsPerPage={rowsPerPage}
-              labelRowsPerPage={"Tweets Per Page:"}
-              page={page}
-              SelectProps={{
-                inputProps: {
-                  'aria-label': 'rows per page',
-                },
-                native: true,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TweetsListPaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
-      </Table>
-      
-    </TableContainer>*/
-
-
-// export default function TweetList() {
-//   // const [tweets, setTweets] = useState();
-//   const [tweets, setTweets] = useState([]);
-//   let { queryParam } = useParams();
-//   const [query, SetQuery] = React.useState();
-
-//   useEffect(() => {
-//     SetQuery(queryParam || "");
-//     console.log(queryParam);
-//     retrieveTweets(queryParam, 10, "tweetcreatedts", "desc");
-//   }, [queryParam]);
-
-//   const retrieveTweets = (query, numResults, sortBy, sortOrder) => {
-//     tweetsService
-//       .getTweets(query, numResults, sortBy, sortOrder)
-//       .then((response) => {
-//         console.log(response.data);
-//         setTweets(response.data.docs);
-//       })
-//       .catch((e) => {
-//         console.log(e);
-//       });
-//   };
-//   //   const retrieveTweets = () => {
-//   //     setTweets([
-//   //       { username: "Ford", text: 15000 , key:1},
-//   //       { username: "toyota", text: 12000 , key:2 },
-//   //       { username: "Rover", text: 14000 , key:3 }
-//   //     ]);
-//   //     console.log(tweets);
-//   //   };
-//   return (
-//     <div className="row m-5">
-//       <div className="col-2">
-//           <div className="FilterPanel">Filter placeholder</div>
-//       </div>
-//       <div className="col-10">
-//         {tweets.map((tweet) => {
-//           return (
-//             <Card sx={{ minWidth: 275 }} variant="outlined">
-//               <CardContent>
-//                 <div className="row">
-//                   <div className="col-1 align-middle">
-//                     <Avatar src="/broken-image.jpg" />
-//                   </div>
-
-//                   <div className="col-8 text-start">
-//                     <div>
-                      
-//                       {tweet.username} -&nbsp;
-//                       <label className="TweetDateLabel">
-//                         {tweet.tweetcreatedts}
-//                       </label>
-//                     </div>
-//                     <div> {tweet.text}</div>
-//                   </div>
-//                   <div className="col-3 ">
-//                     <label>Sentiment placeholder</label>
-//                   </div>
-
-//                 </div>
-//               </CardContent>
-//             </Card>
-//           );
-//         })}
-//         <br />
-//         <div className="ml-auto">
-//           <Pagination count={10} showFirstButton showLastButton color="secondary" />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
