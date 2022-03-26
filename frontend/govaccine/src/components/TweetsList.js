@@ -277,7 +277,9 @@ const reactDonutChartOnMouseEnter = (item) => {
       }
       {displayData.length>0&&
       <div>
+        <div style={{marginTop:'50px',marginBottom:'50px'}}>
       <ReactPaginate
+      
                     previousLabel={"prev"}
                     nextLabel={"next"}
                     breakLabel={"..."}
@@ -289,7 +291,7 @@ const reactDonutChartOnMouseEnter = (item) => {
                     containerClassName={"pagination"}
                     subContainerClassName={"pages pagination"}
                     activeClassName={"active"}/>
-                     
+                     </div>
                     <div>
       
       <Modal>

@@ -6,13 +6,14 @@ export default function SearchBar(props) {
   let { queryParam,sentimentTypeParam,sortByParam,sortOrderParam,numResultsParam} = useParams();
   const [sentimentType,setSentimentType]= React.useState();
   const [sortBy,setSortBy]=React.useState();
-  const [sortOrder,setSortOrder]=React.useState();
+  const [sortOrder,setSortOrder]=React.useState(null);
   const [numResults,setNumResults]=React.useState(null);
   const numResultsInput=React.useRef('all')
   const navigate = useNavigate();
   const [query, SetQuery] = React.useState();
   const [disableOrder,setDisableOrder]=React.useState(false)
-
+  const [sortByChange,setSortByChange]=React.useState(false);
+  const [beforeNull,setbeforeNull]=React.useState();
   function handleChange(event) {
     SetQuery(event.target.value || "");
   }
@@ -25,11 +26,17 @@ export default function SearchBar(props) {
 
   const handleSortBy=(event)=>{
     if (event.target.value=='relevance')
-    setDisableOrder(true)
+    {setbeforeNull(sortOrder)
+      setDisableOrder(true)
+      setSortOrder(null)
+  }
     else
-    setDisableOrder(false)
+    {setSortOrder(beforeNull)
+      setDisableOrder(false)
+    }
     console.log(event.target.value)
       setSortBy(event.target.value)
+    
   };
   const handleSortOrder=(event)=>{
     if (!disableOrder)
@@ -58,9 +65,9 @@ export default function SearchBar(props) {
     SetQuery(queryParam || "");
     setSentimentType(sentimentTypeParam);
     setNumResults(numResultsParam);
-    setSortBy(sortByParam);
-    if (disableOrder)
+    
     setSortOrder(sortOrderParam);
+    setSortBy(sortByParam);
     setDisableOrder(sortByParam=='relevance'?true:false)
   }, [queryParam,sentimentTypeParam,sortByParam,sortOrderParam,numResultsParam]);
 
@@ -85,7 +92,7 @@ export default function SearchBar(props) {
       handleChange={handleSortBy}
       />
       <NormalDropdown
-      value={sortOrder}
+      value={disableOrder?'Sort Order':sortOrder}
       disable={disableOrder}
       title={'Sort Order'}
       array={['asc','desc']}
