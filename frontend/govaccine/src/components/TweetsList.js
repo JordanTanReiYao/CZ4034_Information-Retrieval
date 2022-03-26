@@ -47,6 +47,8 @@ export default function TweetsList(props) {
   const [perPage,setPerPage]=React.useState(20);
   const [displayData,setDisplayData]=React.useState([]);
   const [suggestions,setSuggestions]=React.useState([]);
+  const [queryTime,setQueryTime]=React.useState(0);
+  const [disableOrder,setDisableOrder]=React.useState(false)
   const [sentimentResults,setSentimentResults]=React.useState([
     {
       label: "Positive",
@@ -85,12 +87,11 @@ export default function TweetsList(props) {
     tweetsService
       .getTweets(query, numResults, sortBy, sortOrder,sentiment)
       .then((response) => {
-        
-        console.log('hi',sentimentResults);
         setTweets(response.data.docs);
         setLoading(false);
         setPageCount(Math.ceil(response.data.docs.length / perPage));
         setDisplayData(response.data.docs.slice(0,perPage))
+        setQueryTime(response.data.queryTime)
         setSuggestions(response.data.suggestions.length>0?response.data.suggestions[1].suggestion[0]:[])
         const newSentiments =sentimentResults.map(sentiments=>{
           return {...sentiments, value: response.data.docs.filter (({sentiment}) => sentiment === sentiments.label.toLowerCase()).length}
@@ -214,7 +215,18 @@ const reactDonutChartOnMouseEnter = (item) => {
      
       {loading?<Progress message='Retrieving Tweets'/>:
     ( <div >
-      <Button onClick={open} style={{backgroundColor:'white',border:'1px solid black',marginTop:'25px',marginBottom:'0px',paddingLeft:'20px',paddingRight:'20px'}} >View Sentiment Visualization</Button>
+      <div style={{display:'flex',flexDirection:'row',justifyContent:'space-around',alignContent:'center',alignItems:'center'}}>
+        <h3 style={{marginTop:'45px'}}><span style={{color:'red',fontSize:'36px'}}>{tweets.length}</span> tweets found</h3>
+      <Button onClick={open} style={{backgroundColor:'white',border:'1px solid black',paddingLeft:'20px',paddingRight:'20px'}} >View Sentiment Visualization</Button>
+      <h3 style={{marginTop:'45px'}}>Query Time: <span style={{color:'red',fontSize:'36px'}}>{queryTime}s</span></h3>
+      </div>
+      <hr  style={{
+        marginTop:'0px',
+    color: '#000000',
+    backgroundColor: '#000000',
+    height: .5,
+    borderColor : '#000000'
+}}/>
       {
       
       displayData.length > 0 && sentimentResults[0].value!=-1?

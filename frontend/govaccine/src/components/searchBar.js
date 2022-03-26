@@ -7,10 +7,11 @@ export default function SearchBar(props) {
   const [sentimentType,setSentimentType]= React.useState();
   const [sortBy,setSortBy]=React.useState();
   const [sortOrder,setSortOrder]=React.useState();
-  const [numResults,setNumResults]=React.useState('all');
-  const numResultsInput=React.useRef(null)
+  const [numResults,setNumResults]=React.useState(null);
+  const numResultsInput=React.useRef('all')
   const navigate = useNavigate();
   const [query, SetQuery] = React.useState();
+  const [disableOrder,setDisableOrder]=React.useState(false)
 
   function handleChange(event) {
     SetQuery(event.target.value || "");
@@ -23,20 +24,32 @@ export default function SearchBar(props) {
   };
 
   const handleSortBy=(event)=>{
+    if (event.target.value=='relevance')
+    setDisableOrder(true)
+    else
+    setDisableOrder(false)
     console.log(event.target.value)
       setSortBy(event.target.value)
   };
   const handleSortOrder=(event)=>{
-    console.log(event.target.value)
-      setSortOrder(event.target.value)
+    if (!disableOrder)
+    
+    {console.log(event.target.value)
+      setSortOrder(event.target.value)}
   };
 
   const handleNumInputChange=()=>{
-    setNumResults(numResultsInput.current.value)
+    
+    setNumResults(numResultsInput.current.value);
   };
   function onClick(event) {
     if (query !== "") {
+      console.log(numResults)
+      if (!numResults || numResults<1)
+      navigate("/search/" + query+"/"+sortBy+"/"+sortOrder+"/"+sentimentType+"/"+'all');
+      else
       navigate("/search/" + query+"/"+sortBy+"/"+sortOrder+"/"+sentimentType+"/"+numResults);
+
       
     }
   }
@@ -46,7 +59,9 @@ export default function SearchBar(props) {
     setSentimentType(sentimentTypeParam);
     setNumResults(numResultsParam);
     setSortBy(sortByParam);
+    if (disableOrder)
     setSortOrder(sortOrderParam);
+    setDisableOrder(sortByParam=='relevance'?true:false)
   }, [queryParam,sentimentTypeParam,sortByParam,sortOrderParam,numResultsParam]);
 
   return (
@@ -71,6 +86,7 @@ export default function SearchBar(props) {
       />
       <NormalDropdown
       value={sortOrder}
+      disable={disableOrder}
       title={'Sort Order'}
       array={['asc','desc']}
       handleChange={handleSortOrder}
@@ -82,7 +98,7 @@ export default function SearchBar(props) {
       handleChange={handleSentimentType}
       />
       <input
-         style={{'margin-left':'5px'}}
+         style={{'margin-left':'5px',borderRadius:'6px',border:'1px solid black'}}
          type="number"
          ref={numResultsInput}
          placeholder={'Number of results'}

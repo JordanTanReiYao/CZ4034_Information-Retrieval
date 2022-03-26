@@ -8,9 +8,10 @@ select{
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
-    border: 1px solid #f90;
+    border: 1px solid black;
     text-align: center;
     background-color:azure;
+    border-radius: 6px;
     outline: none;
     text-align-last: center;
     color: #000082;

@@ -10,19 +10,20 @@ import './NormalDropdown.css'
 // array - List of items to display in drop down list
 function NormalDropdown(props){
     return (
-    <select
+    <select disabled={props.disable && props.title=='Sort Order' ? true : null}
       onChange={props.handleChange}
+      style={{color:props.disable && props.title=='Sort Order' ? 'grey' : 'black'}}
       value={props.value}>
-      <option style={{'color':'black'}} value={`${props.title}`} selected disabled hidden>{props.title}</option>
+      <option style={{color:props.disable && props.title=='Sort Order' ? 'white' : 'black'}} value={`${props.title}`} selected disabled hidden>{props.title}</option>
       {/* Allow special option - option which is different from others - to have different formatting*/}
       {props.specialOption?
        props.array.map(choice=>{
        return( 
        // Format differently if it is the special option value (e.g. New Database)
        choice==props.specialOptionValue?<option style={{'color':'red'}} value={choice}>{choice}</option>:
-       <option value={choice}>{choice}</option>)
+       <option disabled={props.disable && props.title=='Sort Order' ? true : null} value={choice}>{choice}</option>)
        }):props.array.map(choice=>{
-       return(<option value={choice}>{choice}</option>)})}        
+       return(<option style={{color:props.disable && props.title=='Sort Order' ? 'white' : 'black'}} value={choice}>{choice}</option>)})}        
        </select>
     )
 }
