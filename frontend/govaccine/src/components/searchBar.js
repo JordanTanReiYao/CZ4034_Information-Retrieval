@@ -4,8 +4,8 @@ import NormalDropdown from './Dropdown/NormalDropdown.js'
 
 export default function SearchBar(props) {
   let { queryParam,sentimentTypeParam,sortByParam,sortOrderParam,numResultsParam} = useParams();
-  const [sentimentType,setSentimentType]= React.useState();
-  const [sortBy,setSortBy]=React.useState();
+  const [sentimentType,setSentimentType]= React.useState(null);
+  const [sortBy,setSortBy]=React.useState(null);
   const [sortOrder,setSortOrder]=React.useState(null);
   const [numResults,setNumResults]=React.useState(null);
   const numResultsInput=React.useRef('all')
@@ -28,7 +28,7 @@ export default function SearchBar(props) {
     if (event.target.value=='relevance')
     {setbeforeNull(sortOrder)
       setDisableOrder(true)
-      setSortOrder(null)
+      setSortOrder('NA')
   }
     else
     {setSortOrder(beforeNull)
@@ -50,7 +50,7 @@ export default function SearchBar(props) {
     setNumResults(numResultsInput.current.value);
   };
   function onClick(event) {
-    if (query !== "") {
+    if (query !== "" && sortBy!=null && sortOrder!=null && sentimentType!=null) {
       console.log(numResults)
       if (!numResults || numResults<1)
       navigate("/search/" + query+"/"+sortBy+"/"+sortOrder+"/"+sentimentType+"/"+'all');
