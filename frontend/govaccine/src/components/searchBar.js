@@ -31,7 +31,7 @@ export default function SearchBar(props) {
       setSortOrder('NA')
   }
     else
-    {setSortOrder(beforeNull)
+    {setSortOrder(sortOrder=='NA'?beforeNull:sortOrder)
       setDisableOrder(false)
     }
     console.log(event.target.value)
@@ -39,10 +39,10 @@ export default function SearchBar(props) {
     
   };
   const handleSortOrder=(event)=>{
-    if (!disableOrder)
     
-    {console.log(event.target.value)
-      setSortOrder(event.target.value)}
+    
+    console.log(event.target.value)
+      setSortOrder(event.target.value)
   };
 
   const handleNumInputChange=()=>{
