@@ -28,6 +28,7 @@ import './TweetsList.css';
 import Grid from '@material-ui/core/Grid';
 import retweeticon from '../assets/retweet.png';
 import twitterlogo from '../assets/twitterlogo.png';
+import clock from '../assets/clock.jpg';
 import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -269,9 +270,12 @@ function unicodeToChar(text){
         <Typography>{tweet.retweetcount}</Typography>
         </div>
        <div style={{fontSize:'17px',fontWeight:'bold',backgroundColor:tweet.sentiment=='positive'?'green':(tweet.sentiment=='neutral'?'lightblue':'red'),color:'white',padding:'10px',borderRadius:'10px'}}>{tweet.sentiment.charAt(0).toUpperCase() + tweet.sentiment.slice(1)}</div>
+        <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignContent:'center',alignItems:'center'}}>
+          <img src={clock} style={{height:'29px',marginRight:'2.9px'}}/>
         <Typography sx={{ mb: 0 }} align='right' color="text.primary">
           {tweet.tweetcreatedts}
         </Typography>
+        </div>
         </Grid>
         </Grid>
       </CardContent>
