@@ -5,10 +5,9 @@ import NavBar from "./components/navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TweetsList from "./components/TweetsList";
 import React from "react";
+import {useRef} from "react";
 
 function App() {
-  
-
   return (
     <div className="App" style={{backgroundColor:'hsl(210, 36%, 96%)',width:'100%',margin:'0px',padding:'0px'}}>
        <meta charset="UTF-8"></meta>
@@ -33,7 +32,7 @@ function App() {
                 <div style={{height:'100%',width:'100%',backgroundColor:'hsl(210, 36%, 96%)',margin:'0px'}}>
                   <SearchBar></SearchBar>
                   
-                  <TweetsList ></TweetsList>
+                  <TweetsList></TweetsList>
                 </div>
               }
               // render={(routeProps) => (
