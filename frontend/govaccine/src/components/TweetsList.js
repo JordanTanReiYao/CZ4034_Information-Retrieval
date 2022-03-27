@@ -212,11 +212,11 @@ function unicodeToChar(text){
 
   return (
     
-    <div style={{height:'100vh',display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
+    <div style={{display:'flex',flexDirection:'column',justifyContent:'space-between',backgroundColor:'hsl(210, 36%, 96%)',margin:'0px'}}>
       
      
       {loading?<Progress message='Retrieving Tweets'/>:
-    ( <div >
+    ( <div style={{backgroundColor:'hsl(210, 36%, 96%)'}}>
       <div style={{display:'flex',flexDirection:'row',justifyContent:'space-around',alignContent:'center',alignItems:'center'}}>
         <h3 style={{marginTop:'45px'}}><span style={{color:'red',fontSize:'36px'}}>{tweets.length}</span> tweets found</h3>
       <Button onClick={open} style={{backgroundColor:'white',border:'1px solid black',paddingLeft:'20px',paddingRight:'20px'}} >View Sentiment Visualization</Button>
@@ -286,9 +286,10 @@ function unicodeToChar(text){
     )):<div style={{height:'100%',margin:'10px'}}>{suggestions.length>0?<div style={{fontSize:18,fontStyle:'italic'}}>Did you mean <span style={{fontSize:18,fontStyle:'italic',color:'red',textDecoration:'underline',cursor:'pointer'}} onClick={clickSuggestion}>{suggestions}</span>?</div>:null}<div style={{fontSize:30,color:'blue',marginTop:'40px',fontStyle:'italic'}}>No tweets found for <span style={{fontStyle:'italic',color:'red'}}>{queryParam}</span></div></div>
       }
       {displayData.length>0&&
-      <div>
-        <div style={{marginTop:'50px',marginBottom:'50px'}}>
+      <div style={{marginTop:'50px',marginBottom:'50px'}}>
+        <div style={{marginTop:'80px',fontSize:'17px'}}>
       <ReactPaginate
+      
       previousLabel={"prev"}
       nextLabel={"next"}
       breakLabel={"..."}

@@ -10,16 +10,16 @@ function App() {
   
 
   return (
-    <div className="App">
+    <div className="App" style={{backgroundColor:'hsl(210, 36%, 96%)',width:'100%',margin:'0px',padding:'0px'}}>
        <meta charset="UTF-8"></meta>
       <NavBar />
-      <div className="row mt-5 h-100">
+      <div className="row mt-5 h-100" style={{backgroundColor:'hsl(210, 36%, 96%)',width:'100%',margin:'0px',padding:'0px'}}>
         <BrowserRouter>
           <Routes>
             <Route
               path="/"
               element={
-                <div>
+                <div style={{height:'100%',width:'100%',backgroundColor:'hsl(210, 36%, 96%)',margin:'0px'}}> 
                   <h1>GO VACCINES</h1>
                   <br />
                   <SearchBar ></SearchBar>
@@ -30,7 +30,7 @@ function App() {
             <Route
               path="/search/:queryParam/:sortByParam/:sortOrderParam/:sentimentTypeParam/:numResultsParam"
               element={
-                <div>
+                <div style={{height:'100%',width:'100%',backgroundColor:'hsl(210, 36%, 96%)',margin:'0px'}}>
                   <SearchBar></SearchBar>
                   
                   <TweetsList ></TweetsList>

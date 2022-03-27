@@ -1,14 +1,18 @@
+html, body, #root {
+  width:100%;
+  height:100%;
+  background-color: hsl(210, 36%, 96%);
+}
 .App {
+  margin:0px;
+  width:100%;
   text-align: center;
-  height: 100%;
-  background:  hsl(210, 36%, 96%);
+  background-color:  hsl(210, 36%, 96%);
   color: hsl(209, 61%, 16%);;
  /*   background-image: url("./content/img/bg.jpg") ;
   opacity: 0.5; */
 }
-html, body, #root {
-  height: 100%;
-}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
