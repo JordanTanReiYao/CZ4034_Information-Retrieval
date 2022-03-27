@@ -14,6 +14,21 @@ export default function SearchBar(props) {
   const [disableOrder,setDisableOrder]=React.useState(false)
   const [sortByChange,setSortByChange]=React.useState(false);
   const [beforeNull,setbeforeNull]=React.useState();
+
+  useEffect(() => {
+    if (props.suggestion!=null){
+    console.log('PPOP')
+    SetQuery(props.suggestion)
+    console.log(props.suggestion)
+    
+    if (props.suggestion !== "" && sortBy!=null && sortOrder!=null && sentimentType!=null) {
+      console.log(numResults)
+      if (!numResults || numResults<1)
+      navigate("/search/" + props.suggestion+"/"+sortBy+"/"+sortOrder+"/"+sentimentType+"/"+'all');
+      else
+      navigate("/search/" + props.suggestion+"/"+sortBy+"/"+sortOrder+"/"+sentimentType+"/"+numResults);}
+  }}, [props.suggestion]);
+
   function handleChange(event) {
     SetQuery(event.target.value || "");
   }

@@ -90,6 +90,7 @@ export default function TweetsList(props) {
     tweetsService
       .getTweets(query, numResults, sortBy, sortOrder,sentiment)
       .then((response) => {
+        props.updateSuggestion(null)
         setTweets(response.data.docs);
         setLoading(false);
         setPageCount(Math.ceil(response.data.docs.length / perPage));
@@ -162,8 +163,10 @@ export default function TweetsList(props) {
 
 
 const clickSuggestion=e=>{
-  SetQuery(suggestions)
-  navigate("/search/" + suggestions+"/"+sortBy+"/"+sortOrder+"/"+sentimentType+"/"+numResults);
+  console.log(suggestions)
+  props.updateSuggestion(suggestions)
+  //SetQuery(suggestions)
+  //navigate("/search/" + suggestions+"/"+sortBy+"/"+sortOrder+"/"+sentimentType+"/"+numResults);
 };
  
 

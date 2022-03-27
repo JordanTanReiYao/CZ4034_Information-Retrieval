@@ -8,6 +8,12 @@ import React from "react";
 import {useRef} from "react";
 
 function App() {
+  const [suggestion,setSuggestion]=React.useState(null)
+  const updateSuggestion=(value)=>{
+    if (value!='nochangeatall'){
+    console.log('hihih')
+    setSuggestion(value)}
+  }
   return (
     <div className="App" style={{backgroundColor:'hsl(210, 36%, 96%)',width:'100%',margin:'0px',padding:'0px'}}>
        <meta charset="UTF-8"></meta>
@@ -30,9 +36,9 @@ function App() {
               path="/search/:queryParam/:sortByParam/:sortOrderParam/:sentimentTypeParam/:numResultsParam"
               element={
                 <div style={{height:'100%',width:'100%',backgroundColor:'hsl(210, 36%, 96%)',margin:'0px'}}>
-                  <SearchBar></SearchBar>
+                  <SearchBar suggestion={suggestion} updateSuggestion={updateSuggestion}></SearchBar>
                   
-                  <TweetsList></TweetsList>
+                  <TweetsList updateSuggestion={updateSuggestion}></TweetsList>
                 </div>
               }
               // render={(routeProps) => (
