@@ -27,6 +27,7 @@ import ReactPaginate from 'react-paginate';
 import './TweetsList.css';
 import Grid from '@material-ui/core/Grid';
 import retweeticon from '../assets/retweet.png';
+import twitterlogo from '../assets/twitterlogo.png';
 import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -227,10 +228,14 @@ const reactDonutChartOnMouseEnter = (item) => {
       displayData.slice(minValue, maxValue).map(tweet => (
       <Card className='card'>
       <CardContent style={{width:'100%', padding:'0px',marginTop:'1px'}}>
-        <div style={{paddingTop:'20px',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',width:'100%',alignContent:'center',backgroundColor:'#92A8D1'}}>
+        <div style={{paddingTop:'20px',display:'flex',flexDirection:'column',justifyContent:'center',
+        alignItems:'center',width:'100%',alignContent:'center',backgroundColor:'#92A8D1'}}>
+          <div style={{width:'100%'}}>
+          <img src={twitterlogo} style={{position:'absolute',left:'10px',top:'8px',height:'40px'}}/>
         <Tooltip title={<div><span style={{ color: "lightblue", fontSize:16 }}>Acct Desc: {tweet.acctdesc}</span><br></br><span style={{ color: "lightblue", fontSize:16 }}>Location: {tweet.location}</span></div>} sx={{ fontSize: 13 }} >
         <img src={tweet.image_url} style={{borderRadius:'10px',height:'180px',marginBottom:'10px'}}/>
         </Tooltip>
+        </div>
       <Typography className='userName' sx={{ fontSize: 20,mt:0.5,mb:1, width:'100%',fontWeight:'bold' }} color='blue' variant="h5" component="div" width='100%'>
           {tweet.username}
           

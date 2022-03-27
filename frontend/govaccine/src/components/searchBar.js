@@ -105,7 +105,7 @@ export default function SearchBar(props) {
       handleChange={handleSentimentType}
       />
       <input
-         style={{'margin-left':'5px',borderRadius:'6px',border:'1px solid black'}}
+         style={{'margin-left':'5px',borderRadius:'6px',border:'1px solid black',height:'32.3px'}}
          type="number"
          ref={numResultsInput}
          placeholder={'Number of results'}
