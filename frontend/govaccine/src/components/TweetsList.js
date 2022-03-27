@@ -33,6 +33,7 @@ import Tooltip from '@mui/material/Tooltip';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DonutChart from "react-donut-chart";
 import { useModal } from 'react-hooks-use-modal';
+import Emoji from 'react-emoji-render';
 
 
 export default function TweetsList(props) {
@@ -203,6 +204,8 @@ const reactDonutChartOnMouseEnter = (item) => {
 };
 
 
+
+
   return (
     
     <div style={{height:'100vh',display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
@@ -232,7 +235,7 @@ const reactDonutChartOnMouseEnter = (item) => {
         alignItems:'center',width:'100%',alignContent:'center',backgroundColor:'#92A8D1'}}>
           <div style={{width:'100%'}}>
           <img src={twitterlogo} style={{position:'absolute',left:'10px',top:'8px',height:'40px'}}/>
-        <Tooltip title={<div><span style={{ color: "lightblue", fontSize:16 }}>Acct Desc: {tweet.acctdesc}</span><br></br><span style={{ color: "lightblue", fontSize:16 }}>Location: {tweet.location}</span></div>} sx={{ fontSize: 13 }} >
+        <Tooltip title={<div ><span style={{ color: "lightblue", fontSize:16 }}>Acct Desc: {tweet.acctdesc}</span><br></br><span charset="UTF-8" style={{ color: "lightblue", fontSize:16 }}>Location: {tweet.location}</span></div>} sx={{ fontSize: 13 }} >
         <img src={tweet.image_url} style={{borderRadius:'10px',height:'180px',marginBottom:'10px'}}/>
         </Tooltip>
         </div>

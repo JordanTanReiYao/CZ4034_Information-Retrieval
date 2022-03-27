@@ -11,6 +11,7 @@ function App() {
 
   return (
     <div className="App">
+       <meta charset="UTF-8"></meta>
       <NavBar />
       <div className="row mt-5 h-100">
         <BrowserRouter>
