@@ -203,7 +203,10 @@ const reactDonutChartOnMouseEnter = (item) => {
   reactDonutChartStrokeColor = color;
 };
 
-
+function unicodeToChar(text){
+  return text.replace(/\\u[\dA-F]{4}/gi, function(match){
+     return String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16));});
+}
 
 
   return (
@@ -235,7 +238,7 @@ const reactDonutChartOnMouseEnter = (item) => {
         alignItems:'center',width:'100%',alignContent:'center',backgroundColor:'#92A8D1'}}>
           <div style={{width:'100%'}}>
           <img src={twitterlogo} style={{position:'absolute',left:'10px',top:'8px',height:'40px'}}/>
-        <Tooltip title={<div ><span style={{ color: "lightblue", fontSize:16 }}>Acct Desc: {tweet.acctdesc}</span><br></br><span charset="UTF-8" style={{ color: "lightblue", fontSize:16 }}>Location: {tweet.location}</span></div>} sx={{ fontSize: 13 }} >
+        <Tooltip title={<div ><span style={{ color: "lightblue", fontSize:16 }}>Acct Desc: {unicodeToChar(tweet.acctdesc)}</span><br></br><span charset="UTF-8" style={{ color: "lightblue", fontSize:16 }}>Location: {tweet.location}</span></div>} sx={{ fontSize: 13 }} >
         <img src={tweet.image_url} style={{borderRadius:'10px',height:'180px',marginBottom:'10px'}}/>
         </Tooltip>
         </div>

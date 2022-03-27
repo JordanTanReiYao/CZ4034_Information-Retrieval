@@ -9,7 +9,7 @@ import pytz
 
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
-app.config['JSON_AS_ASCII'] = True
+app.config['JSON_AS_ASCII'] = False
 CORS(app)
 
 solr = pysolr.Solr("http://localhost:8983/solr/tweets", always_commit=True)

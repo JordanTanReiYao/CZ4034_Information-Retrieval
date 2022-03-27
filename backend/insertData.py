@@ -3,7 +3,7 @@ import pysolr
 
 
 tweets = pd.read_csv('CZ4034_Labelled_Tweets.csv', dtype={'id': str,'following':int,'followers':int,"totaltweets":int,
-                                                "retweetcount":int,"favoritecount":int,"acctdesc":str})
+                                                "retweetcount":int,"favoritecount":int,"acctdesc":str},encoding='utf-8')
 
 
 data=[{"id":index,"username":row['username'],"image_url":row['image_url'],"acctdesc":row['acctdesc'] ,"location":row['location'],
