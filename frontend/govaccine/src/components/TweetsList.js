@@ -99,12 +99,6 @@ export default function TweetsList(props) {
         setSentimentResults(newSentiments)
           
         })
-        
-         /* {...sentimentResults,"positive":response.data.docs.filter (({sentiment}) => sentiment === 'positive').length,
-        "negative":response.data.docs.filter (({sentiment}) => sentiment === 'negative').length,
-        "neutral":response.data.docs.filter (({sentiment}) => sentiment === 'neutral').length}*/
-
-      
       .catch((e) => {
         console.log(e);
       });
@@ -233,14 +227,15 @@ const reactDonutChartOnMouseEnter = (item) => {
       displayData.slice(minValue, maxValue).map(tweet => (
       <Card className='card'>
       <CardContent style={{width:'100%', padding:'0px',marginTop:'1px'}}>
-        <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',width:'100%',alignContent:'center',backgroundColor:'#92A8D1'}}>
-        <AccountCircleIcon sx={{ color: 'grey',m:0,mt:2,fontSize:50 }}/>
-      <Tooltip title={<div><span style={{ color: "lightblue", fontSize:16 }}>Acct Desc: {tweet.acctdesc}</span><br></br><span style={{ color: "lightblue", fontSize:16 }}>Location: {tweet.location}</span></div>} sx={{ fontSize: 13 }} >
-      <Typography className='userName' sx={{ fontSize: 20,mt:0.5,mb:0.5, width:'100%',fontWeight:'bold' }} color='blue' variant="h5" component="div" width='100%'>
+        <div style={{paddingTop:'20px',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',width:'100%',alignContent:'center',backgroundColor:'#92A8D1'}}>
+        <Tooltip title={<div><span style={{ color: "lightblue", fontSize:16 }}>Acct Desc: {tweet.acctdesc}</span><br></br><span style={{ color: "lightblue", fontSize:16 }}>Location: {tweet.location}</span></div>} sx={{ fontSize: 13 }} >
+        <img src={tweet.image_url} style={{borderRadius:'10px',height:'180px',marginBottom:'10px'}}/>
+        </Tooltip>
+      <Typography className='userName' sx={{ fontSize: 20,mt:0.5,mb:1, width:'100%',fontWeight:'bold' }} color='blue' variant="h5" component="div" width='100%'>
           {tweet.username}
           
         </Typography>
-        </Tooltip>
+        
         <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>
         <Typography sx={{ fontSize: 13,fontWeight:'bold',mb:1.5,my:0,mr:2}}>Followers: <span style={{fontSize: 13,fontWeight:'bold',color:'blue'}}>{tweet.followers}</span></Typography>
         <Typography sx={{ fontSize: 13,my:0,mr:2,mb:1.5,fontWeight:'bold'  }} >Following: <span style={{fontSize: 13,fontWeight:'bold',color:'blue'}}>{tweet.following}</span></Typography>
@@ -279,20 +274,19 @@ const reactDonutChartOnMouseEnter = (item) => {
       <div>
         <div style={{marginTop:'50px',marginBottom:'50px'}}>
       <ReactPaginate
-      
-                    previousLabel={"prev"}
-                    nextLabel={"next"}
-                    breakLabel={"..."}
-                    breakClassName={"break-me"}
-                    pageCount={pageCount}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
-                    onPageChange={handlePageClick}
-                    containerClassName={"pagination"}
-                    subContainerClassName={"pages pagination"}
-                    activeClassName={"active"}/>
-                     </div>
-                    <div>
+      previousLabel={"prev"}
+      nextLabel={"next"}
+      breakLabel={"..."}
+      breakClassName={"break-me"}
+      pageCount={pageCount}
+      marginPagesDisplayed={2}
+      pageRangeDisplayed={5}
+      onPageChange={handlePageClick}
+      containerClassName={"pagination"}
+      subContainerClassName={"pages pagination"}
+      activeClassName={"active"}/>
+      </div>
+        <div>
       
       <Modal>
         <div style={{backgroundColor:'white',padding:'0px',display:'flex',flexDirection:'column',
@@ -315,13 +309,9 @@ const reactDonutChartOnMouseEnter = (item) => {
         </div>
       </Modal>
     </div>
-
-                    </div> 
-                    }
-                   
+      </div> 
+      }            
       </div>)}
-      
-   
     </div>
   );
 }

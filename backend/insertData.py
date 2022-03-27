@@ -6,7 +6,7 @@ tweets = pd.read_csv('CZ4034_Labelled_Tweets.csv', dtype={'id': str,'following':
                                                 "retweetcount":int,"favoritecount":int})
 
 
-data=[{"id":index,"username":row['username'],"acctdesc":row['acctdesc'],"location":row['location'],
+data=[{"id":index,"username":row['username'],"image_url":row['image_url'],"acctdesc":row['acctdesc'],"location":row['location'],
 "following":row["following"],"followers":row["followers"],"totaltweets":row["totaltweets"],
 "usercreatedts":row['usercreatedts'],"tweetcreatedts":row["tweetcreatedts"],"retweetcount":row["retweetcount"],
 "favoritecount":row["favoritecount"],"text":row["text"],'sentiment':row['sentiment']} for index,row in tweets.iterrows()]

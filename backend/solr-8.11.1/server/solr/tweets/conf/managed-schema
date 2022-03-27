@@ -473,6 +473,7 @@
   <field name="retweetcount" type="plongs"/>
   <!--<field name="spellcheck" type="text_general" multiValued="true" indexed="true" stored="true"/>-->
   <field name="text" type="text_general"/>
+  <field name="image_url" type="text_general"/>
   <field name="totaltweets" type="plongs"/>
   <field name="tweetcreatedts" type="pdates"/>
   <field name="usercreatedts" type="pdates"/>
