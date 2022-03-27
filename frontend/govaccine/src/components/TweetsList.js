@@ -245,7 +245,7 @@ const reactDonutChartOnMouseEnter = (item) => {
         </div>
         <Divider align='center' />
         <Grid container sx={{color:'blue'}} style={{padding:'17px'}}>
-        <Typography sx={{ fontSize: 17,my:3, width:'100%' }} color="text.primary" gutterBottom>
+        <Typography sx={{ fontSize: 17,mt:1.5,mb:4, width:'100%' }} color="text.primary" gutterBottom>
           {tweet.text}
         </Typography>
         
