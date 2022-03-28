@@ -151,6 +151,16 @@ export default function TweetsList(props) {
     setDisplayData(tweets.slice(e.selected*perPage,e.selected*perPage+perPage))
     };
 
+    function UrlExists(url) {
+        var http = new XMLHttpRequest();
+        http.open('HEAD', url, false);
+        http.send();
+        if (http.status != 404)
+            return true;
+        else
+            return false;
+    }
+
     <Grid
   container
   spacing={0}
@@ -212,6 +222,9 @@ function unicodeToChar(text){
      return String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16));});
 }
 
+function addDefaultSrc(ev){
+  ev.target.src = 'https://abs.twimg.com/sticky/default_profile_images/default_profile.png'
+}
 
   return (
     
@@ -243,7 +256,7 @@ function unicodeToChar(text){
           <div style={{width:'100%'}}>
           <img src={twitterlogo} style={{position:'absolute',left:'10px',top:'8px',height:'40px'}}/>
         <Tooltip title={<div ><span style={{ color: "lightblue", fontSize:16 }}>Acct Desc: {unicodeToChar(tweet.acctdesc)}</span><br></br><span charset="UTF-8" style={{ color: "lightblue", fontSize:16 }}>Location: {tweet.location}</span></div>} sx={{ fontSize: 13 }} >
-        <img src={tweet.image_url} style={{borderRadius:'10px',height:'180px',marginBottom:'10px'}}/>
+        <img src={tweet.image_url} onError={addDefaultSrc} style={{borderRadius:'10px',height:'180px',marginBottom:'10px'}}/>
         </Tooltip>
         </div>
       <Typography className='userName' sx={{ fontSize: 20,mt:0.5,mb:1, width:'100%',fontWeight:'bold' }} color='blue' variant="h5" component="div" width='100%'>
