@@ -25,7 +25,7 @@ function App() {
               path="/"
               element={
                 <div style={{height:'100%',width:'100%',backgroundColor:'hsl(210, 36%, 96%)',margin:'0px'}}> 
-                  <h1>GO VACCINES</h1>
+                  <h1>GO VACCINE</h1>
                   <br />
                   <SearchBar ></SearchBar>
                 

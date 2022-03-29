@@ -235,7 +235,7 @@ function addDefaultSrc(ev){
     ( <div style={{backgroundColor:'hsl(210, 36%, 96%)'}}>
       <div style={{display:'flex',flexDirection:'row',justifyContent:'space-around',alignContent:'center',alignItems:'center'}}>
         <h3 style={{marginTop:'45px'}}><span style={{color:'red',fontSize:'36px'}}>{tweets.length}</span> tweets found</h3>
-      <Button onClick={open} style={{backgroundColor:'white',border:'1px solid black',paddingLeft:'20px',paddingRight:'20px'}} >View Sentiment Visualization</Button>
+      <Button onClick={open} style={{backgroundColor:'white',border:'1px solid black',paddingLeft:'20px',paddingRight:'20px'}} >View Sentiment Distribution</Button>
       <h3 style={{marginTop:'45px'}}>Query Time: <span style={{color:'red',fontSize:'36px'}}>{queryTime}s</span></h3>
       </div>
       <hr  style={{

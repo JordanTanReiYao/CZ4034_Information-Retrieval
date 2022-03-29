@@ -1,6 +1,7 @@
 from tweepy import OAuthHandler
 import tweepy
 import pandas as pd
+import re
 
 # Twitter credentials
 # Obtain them from your twitter developer account
@@ -16,7 +17,7 @@ api = tweepy.API(auth,wait_on_rate_limit=True)
 ## Function to scrape tweets
 def scraptweets(search_words, numTweets):    
     # Define a pandas dataframe to store the date:
-    db_tweets = pd.DataFrame(columns = ['username', 'acctdesc', 'location', 'following',
+    db_tweets = pd.DataFrame(columns = ['username','image_url', 'acctdesc', 'location', 'following',
                                         'followers', 'totaltweets', 'usercreatedts', 'tweetcreatedts',
                                         'retweetcount','favoritecount', 'text', 'hashtags'])
     
@@ -28,7 +29,7 @@ def scraptweets(search_words, numTweets):
 
 
     # Store these tweets into a python list
-    tweet_list = [tweet for tweet in tweets]
+    
     # Obtain the following info (methods to call them out):
     # user.screen_name - twitter handle
     # user.description - description of account
@@ -42,9 +43,12 @@ def scraptweets(search_words, numTweets):
     # favorite_count - np. of favorites of the tweet
     # retweeted_status.full_text - full text of the tweet
     # entities['hashtags'] - hashtags in the tweet
+    tweet_list = [tweet for tweet in tweets]
     noTweets = 0
     for tweet in tweet_list:
         username = tweet.user.screen_name
+        image_url=re.sub(r'(_normal)(.(jpg|png|jpeg))$',r'\2',
+        tweet.user.profile_image_url_https)
         acctdesc = tweet.user.description
         location = tweet.user.location
         following = tweet.user.friends_count
@@ -56,8 +60,9 @@ def scraptweets(search_words, numTweets):
         favorite_count=tweet.favorite_count
         hashtags = tweet.entities['hashtags']
         text=tweet.full_text.encode('ascii','ignore').decode('ascii')
-        ith_tweet = [username, acctdesc, location, following, followers, totaltweets,
-                        usercreatedts, tweetcreatedts, retweetcount,favorite_count, text, hashtags]
+        ith_tweet = [username, image_url, acctdesc, location, 
+        following, followers, totaltweets,usercreatedts, 
+        tweetcreatedts, retweetcount,favorite_count, text, hashtags]
         db_tweets.loc[len(db_tweets)] = ith_tweet
         noTweets += 1
          
@@ -72,4 +77,4 @@ numTweets = 25000
 
 db=scraptweets(search_words,numTweets)
 
-db.to_csv('CZ4034_Tweets.csv',index=False)
+db.to_csv('CZ4034_Labelled_Tweets.csv',index=False)
