@@ -288,6 +288,7 @@
               dictionary="en-lemmatizer.txt"/>  
     </analyzer>
     <analyzer type="query">
+    <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[^A-Za-z0-9]+" replacement=" "/>
     <tokenizer class="solr.OpenNLPTokenizerFactory"
       sentenceModel="opennlp-en-ud-ewt-sentence-1.0-1.9.3.bin"
       tokenizerModel="opennlp-en-ud-ewt-tokens-1.0-1.9.3.bin"/>
