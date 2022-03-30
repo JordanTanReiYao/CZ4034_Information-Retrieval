@@ -3,7 +3,11 @@ import axios from "axios"
 export default axios.create({
     baseURL:" http://localhost:5000/",
     headers:{
-        "Content-type":"application/json"
-    }
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        
+    },
+    mode:'cors',
+    method:['GET','POST']
 
 });

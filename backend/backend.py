@@ -6,6 +6,8 @@ import datetime
 from dateutil.parser import parse,isoparse
 from dateutil.tz import *
 import pytz
+import pandas as pd
+import requests
 
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
@@ -51,6 +53,34 @@ def get_results():
 
     suggestions=search_results.raw_response['spellcheck']['suggestions'] if 'spellcheck' in search_results.raw_response else []
     return jsonify(queryTime=queryTime,numDocs=numDocs,docs=docs,suggestions=suggestions)
+
+
+@app.route('/upload', methods=["GET", "POST"])
+def index():
+    print(23)
+    print(request.files)
+    print(len(request.files))
+    tweets = pd.read_csv(request.files['file1'],dtype={'id': str,'following':int,'followers':int,"totaltweets":int,
+                                                    "retweetcount":int,"favoritecount":int,"acctdesc":str},encoding='utf-8')
+    url = 'http://localhost:8983/solr/admin/cores?action=STATUS&core=tweets'
+
+    resp = requests.get(url=url )
+    index=resp.json()['status']['tweets']['index']['numDocs']
+    print(index)
+    data=[]
+    for _,row in tweets.iterrows():
+        data.append({"id":index,"username":row['username'],"image_url":row['image_url'],"acctdesc":row['acctdesc'] ,"location":row['location'],
+    "following":row["following"],"followers":row["followers"],"totaltweets":row["totaltweets"],
+    "usercreatedts":row['usercreatedts'],"tweetcreatedts":row["tweetcreatedts"],"retweetcount":row["retweetcount"],
+    "favoritecount":row["favoritecount"],"text":row["text"],'sentiment':row['sentiment']})
+        index+=1
+
+    print("Add data to Solr:")
+    try:
+        print(solr.add(data))
+    except:
+        return jsonify(message="Error Uploading!")
+    return jsonify(message="Successfully Uploaded!")
 
     
 if __name__ == "__main__":

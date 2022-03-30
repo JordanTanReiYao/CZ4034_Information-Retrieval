@@ -9,10 +9,14 @@ import {useRef} from "react";
 
 function App() {
   const [suggestion,setSuggestion]=React.useState(null)
+  const [uploaded,setUploaded]=React.useState(false)
   const updateSuggestion=(value)=>{
     if (value!='nochangeatall'){
     console.log('hihih')
     setSuggestion(value)}
+  }
+  const updateUploaded=(value)=>{
+    setUploaded(value)
   }
   return (
     <div className="App" style={{backgroundColor:'hsl(210, 36%, 96%)',width:'100%',margin:'0px',padding:'0px'}}>
@@ -27,7 +31,7 @@ function App() {
                 <div style={{height:'100%',width:'100%',backgroundColor:'hsl(210, 36%, 96%)',margin:'0px'}}> 
                   <h1>GO VACCINE</h1>
                   <br />
-                  <SearchBar ></SearchBar>
+                  <SearchBar suggestion={suggestion} updateSuggestion={updateSuggestion} updateUploaded={updateUploaded}></SearchBar>
                 
                 </div>
               }
@@ -36,9 +40,9 @@ function App() {
               path="/search/:queryParam/:sortByParam/:sortOrderParam/:sentimentTypeParam/:numResultsParam"
               element={
                 <div style={{height:'100%',width:'100%',backgroundColor:'hsl(210, 36%, 96%)',margin:'0px'}}>
-                  <SearchBar suggestion={suggestion} updateSuggestion={updateSuggestion}></SearchBar>
+                  <SearchBar suggestion={suggestion} updateSuggestion={updateSuggestion} updateUploaded={updateUploaded}></SearchBar>
                   
-                  <TweetsList updateSuggestion={updateSuggestion}></TweetsList>
+                  <TweetsList updateSuggestion={updateSuggestion} uploaded={uploaded} updateUploaded={updateUploaded}></TweetsList>
                 </div>
               }
               // render={(routeProps) => (

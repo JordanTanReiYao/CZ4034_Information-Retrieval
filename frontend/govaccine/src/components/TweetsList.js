@@ -75,14 +75,24 @@ export default function TweetsList(props) {
     closeOnOverlayClick: true
   });
   useEffect(() => {
+    if (props.uploaded==true || query!=queryParam||sortBy!=sortByParam||sortOrder!=sortOrderParam||numResults!=numResultsParam
+      ||sentimentType!=sentimentTypeParam){
     SetQuery(queryParam || "");
     setSentimentType(sentimentTypeParam);
     setSortBy(sortByParam);
     setSortOrder(sortOrderParam);
     setNumResults(numResultsParam);
     console.log(queryParam,sentimentTypeParam);
+    
     retrieveTweets(queryParam, numResultsParam, sortByParam, sortOrderParam,sentimentTypeParam);
-  }, [queryParam,sentimentTypeParam,sortByParam,sortOrderParam,numResultsParam ]);
+    
+  }
+  if (props.uploaded==true){
+    console.log('me is here')
+    props.updateUploaded(false)
+  }
+    
+  }, [queryParam,sentimentTypeParam,sortByParam,sortOrderParam,numResultsParam,props.uploaded ]);
 
   const retrieveTweets = (query, numResults, sortBy, sortOrder,sentiment) => {
     setLoading(true);
