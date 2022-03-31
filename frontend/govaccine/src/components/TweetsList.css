@@ -1,94 +1,85 @@
 .pagination {
-  margin: 15px auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  list-style: none;
-  outline: none;
-}
-.pagination > .active > a {
-  background-color: #47ccde;
-  border-color: #47ccde;
-  color: #fff;
-}
-.pagination > li > a {
-  border: 1px solid #47ccde;
-  padding: 5px 10px;
-  outline: none;
-  cursor: pointer;
-}
-.pagination > .active > a,
-.pagination > .active > span,
-.pagination > .active > a:hover,
-.pagination > .active > span:hover,
-.pagination > .active > a:focus,
-.pagination > .active > span:focus {
-  background-color: #47ccde;
-  border-color: #47ccde;
-  outline: none;
-}
-.pagination > li > a,
-.pagination > li > span {
-  color: #47ccde;
-}
-.pagination > li:first-child > a,
-.pagination > li:first-child > span,
-.pagination > li:last-child > a,
-.pagination > li:last-child > span {
-  border-radius: unset;
-}
+    margin: 15px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style: none;
+    outline: none;
+  }
+  .pagination > .active > a{
+    background-color: #47ccde ;
+    border-color: #47ccde ;
+    color: #fff;
+  }
+  .pagination > li > a{
+    border: 1px solid #47ccde ;
+    padding: 5px 10px;
+    outline: none;
+    cursor: pointer;
+  }
+  .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+    background-color: #47ccde ;
+    border-color: #47ccde;
+    outline: none ;
+  }
+  .pagination > li > a, .pagination > li > span{
+    color: #47ccde
+  }
+  .pagination > li:first-child > a, .pagination > li:first-child > span, .pagination > li:last-child > a, .pagination > li:last-child > span{
+    border-radius: unset
+  }
 
-.card {
-  flex-direction: row;
-  justify-content: center;
-  /* border-color: blue; */
-  box-shadow: 5;
-  align-items: center;
-  align-self: center;
-  margin: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0px;
-  width: 60vw;
-  font-weight: bold;
-}
+  .card{
+      flex-direction: row;
+      justify-content: center;
+      border-color: blue;
+      align-items: center;
+        align-self: center;
+        margin:30px;
+      margin-left: auto;
+      margin-right: auto;
+      padding:0px;
+      width: 60vw;
+  }
 
-.tweetslist {
-  align-items: center;
-  align-self: center;
-  flex-direction: row;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-}
+  .tweetslist{
+    align-items: center;
+    align-self: center;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-.userName {
-  position: relative;
-  display: inline-block;
-  cursor: default;
-}
-.userName .tooltip {
-  visibility: hidden;
-  padding: 0.25em 0.5em;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 0.25em;
-  white-space: nowrap;
 
-  /* Position the tooltip */
-  position: absolute;
-  z-index: 1;
-  top: 100%;
-  left: 100%;
-  transition-property: visibility;
-  transition-delay: 0s;
-}
-.userName:hover .tooltip {
-  visibility: visible;
-  transition-delay: 0.3s;
-}
-
-.donut {
-  font-size: 23px;
-}
+  .userName{
+    position: relative;
+    display: inline-block;
+    cursor: default;
+  }
+  .userName .tooltip {
+    visibility: hidden;
+    padding: 0.25em 0.5em;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 0.25em;
+    white-space: nowrap;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 100%;
+    transition-property: visibility;
+    transition-delay: 0s;
+  }
+  .userName:hover .tooltip{
+    visibility: visible;
+    transition-delay: 0.3s;
+  }
+  
+  .donut{
+    font-size: 23px;
+  }
+  
