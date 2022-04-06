@@ -1,5 +1,7 @@
 # CZ4034 Information Retrieval Project
 
+This is the search engine web app for our CZ4034 project
+
 ## Backend
 
 To run backend:
