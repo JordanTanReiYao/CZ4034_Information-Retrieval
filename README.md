@@ -14,8 +14,6 @@ To run frontend:
 1. Change directory to frontend/govaccine, then run "npm install" to install dependencies
 2. Run "npm start" to start search engine app, the app will run on http://localhost:3000/
 
-![](/images/App screen 1.png)
-
-## Machine Learning/Classification
-
-The machine learning model generation files can be found in the folder "Classification"
+![](./images/App_screen_1.png)
+<br>
+![](./images/App_screen_2.png)
