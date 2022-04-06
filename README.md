@@ -14,6 +14,7 @@ To run frontend:
 1. Change directory to frontend/govaccine, then run "npm install" to install dependencies
 2. Run "npm start" to start search engine app, the app will run on http://localhost:3000/
 
+## Search Engine App Interface
 ![](./images/App_screen_1.png)
-<br>
+<br/>
 ![](./images/App_screen_2.png)
