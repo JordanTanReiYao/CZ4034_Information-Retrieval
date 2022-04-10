@@ -18,7 +18,7 @@ To run frontend:
 
 
 ## Classification
-Classification Models and datasets used can be found at this link: https://drive.google.com/drive/folders/1-26pAI5q1VBHyiLc0kOp4njPdFFlbh85 
+Classification Models and datasets used can be found at this [link](https://drive.google.com/drive/folders/1-26pAI5q1VBHyiLc0kOp4njPdFFlbh85).
 
 ## Search Engine App Interface
 ![](./images/App_screen_1.png)
