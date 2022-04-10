@@ -16,6 +16,10 @@ To run frontend:
 1. Change directory to frontend/govaccine, then run "npm install" to install dependencies.
 2. Run "npm start" to start search engine app, the app will run on http://localhost:3000/.
 
+
+## Classification
+Classification Models and datasets used can be found at this link: https://drive.google.com/drive/folders/1-26pAI5q1VBHyiLc0kOp4njPdFFlbh85 
+
 ## Search Engine App Interface
 ![](./images/App_screen_1.png)
 <br/>
